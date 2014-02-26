@@ -16,14 +16,14 @@ import com.coal.mtp.dto.DictDto;
 import com.coal.mtp.dto.DictItem;
 import com.coal.mtp.entity.Dict;
 import com.coal.mtp.entity.DictType;
-import com.coal.mtp.repositories.DictRepository;
+import com.coal.mtp.service.DictService;
 
 @Controller
 @RequestMapping("/dict")
 public class DictController {
 
     @Autowired
-    private DictRepository dictRepo;
+    private DictService dictService;
     
     @RequestMapping(value="/{type}", method = RequestMethod.POST)
     public String createDictItem(@PathVariable("type") Integer type, @RequestParam("name") String name){
@@ -31,17 +31,22 @@ public class DictController {
     	dict.setDictType(DictType.fromInt(type));
     	dict.setEnable(true);
     	dict.setName(name);
-    	dictRepo.save(dict);
+    	dictService.create(dict);
     	return "redirect:" + type;
     }
     
     @RequestMapping(value = "/{type}", method = RequestMethod.GET)
     public String listDictByType(@PathVariable("type") Integer type, Model model) {
-    	DictType dictType = DictType.fromInt(type);
-		List<Dict> dicts = dictRepo.findByDictType(dictType);
+		List<Dict> dicts = dictService.findByType(type);
     	model.addAttribute("dicts", dicts);
-    	model.addAttribute("type", dictType.getName());
+    	model.addAttribute("type", DictType.fromInt(type).getName());
     	return "dict/list";
+    }
+    
+    @RequestMapping(value = "/{type}/{id}", params = "delete")
+    public String deleteDict(@PathVariable("type") Integer type, @PathVariable("id") Long id) {
+        dictService.delete(id);
+        return "redirect:../"+type;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
@@ -58,7 +63,7 @@ public class DictController {
     
     private List<DictItem> getDictItems(DictType type) {
         List<DictItem> dictItems = new ArrayList<DictItem>();
-        List<Dict> dicts = dictRepo.findByDictType(type);
+        List<Dict> dicts = dictService.findByType(type.toInt());
         for (Dict dict : dicts) {
             dictItems.add(new DictItem(dict.getId(),dict.getName()));
         }

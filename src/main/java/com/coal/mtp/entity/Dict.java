@@ -15,12 +15,12 @@ import org.hibernate.annotations.Type;
 public class Dict {
     @Id
     @Column(name = "id")
-    @GenericGenerator(name = "snowflake", strategy = "com.coal.geoguarantee.util.SnowflakeIdGenerator")
+    @GenericGenerator(name = "snowflake", strategy = "com.coal.mtp.util.SnowflakeIdGenerator")
     @GeneratedValue(generator = "snowflake")
     private Long id;
     @Column(name = "dict_type")
-    @Type(type = "com.coal.geoguarantee.util.GenericEnumUserType", parameters = {
-            @Parameter(name = "enumClass", value = "com.coal.geoguarantee.entity.DictType"),
+    @Type(type = "com.coal.mtp.util.GenericEnumUserType", parameters = {
+            @Parameter(name = "enumClass", value = "com.coal.mtp.entity.DictType"),
             @Parameter(name = "identifierMethod", value = "toInt"),
             @Parameter(name = "valueOfMethod", value = "fromInt") })
     private DictType dictType;

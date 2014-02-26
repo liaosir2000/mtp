@@ -11,9 +11,9 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
 	<import resource="datasource.xml"/>
-	<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<tx:annotation-driven transaction-manager="jpaTransactionManager" />
-	<jpa:repositories base-package="com.coal.geoguarantee.repositories" entity-manager-factory-ref="entityManagerFactory" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<jpa:repositories base-package="com.coal.mtp.repositories" entity-manager-factory-ref="entityManagerFactory" />
 </beans>

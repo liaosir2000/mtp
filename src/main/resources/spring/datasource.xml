@@ -17,7 +17,7 @@
 		</jdbc:embedded-database>
 		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 			<property name="dataSource" ref="dataSource" />
-			<property name="packagesToScan" value="com.coal.geoguarantee.entity" />
+			<property name="packagesToScan" value="com.coal.mtp.entity" />
 			<property name="jpaVendorAdapter">
 				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 					<property name="showSql" value="true" />
@@ -41,10 +41,11 @@
 		</bean>
 		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 			<property name="dataSource" ref="dataSource" />
+			<property name="packagesToScan" value="com.coal.mtp.entity" />
 			<property name="jpaVendorAdapter">
 				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 					<property name="showSql" value="false" />
-					<property name="generateDdl" value="false" />
+					<property name="generateDdl" value="true" />
 				</bean>
 			</property>
 		</bean>
