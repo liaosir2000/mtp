@@ -20,21 +20,37 @@ public class Form implements Serializable {
     @GenericGenerator(name = "snowflake", strategy = "com.coal.mtp.util.SnowflakeIdGenerator")
     @GeneratedValue(generator = "snowflake")
     private Long id;
+    @Column(name = "surface_id")
     private Long workingSurfaceId;
+    @Column(name = "surface_name")
     private String workingSurfaceName;
+    @Column(name = "create_time")
     private DateTime createTime;
+    @Column(name = "shift_id")
     private Long shiftId;
+    @Column(name = "shift_name")
     private String shiftName;
+    @Column(name = "tunnel_id")
     private Long tunnelId;
+    @Column(name = "tunnel_name")
     private String tunnelName;
+    @Column(name = "observer_point_id")
     private Long observerPointId;
+    @Column(name = "observer_point_name")
     private String observrePointName;
+    @Column(name = "observer_info_1")
     private Long observerInfo1;
+    @Column(name = "observer_info_2")
     private Long observerInfo2;
+    @Column(name = "observer_info_3")
     private Long observerInfo3;
+    @Column(name = "team_id")
     private String teamId;
+    @Column(name = "team_name")
     private String teamName;
+    @Column(name = "reporter_id")
     private String reporterId;
+    @Column(name = "reporter")
     private String reporter;
     public Long getId() {
         return id;
