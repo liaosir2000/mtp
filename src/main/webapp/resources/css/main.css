@@ -1,9 +1,19 @@
-#dictDelete {
+td .dictDelete {
 	cursor: pointer;
 }
 
 #form {
 	width: 800px;
-	border-bottom-width: 1px;
+	border-width:1px;
 	border-color: #333333;
+	background-color: #eeeeee;
+}
+
+#form .header {
+	text-align: center;
+	font-size: large;
+}
+
+#form .shift {
+	text-align: right;
 }
