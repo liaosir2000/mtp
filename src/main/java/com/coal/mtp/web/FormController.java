@@ -23,6 +23,7 @@ public class FormController {
     public String edit(Model model) {
         List<Dict> surfaces = dictService.findByType(DictType.WORKING_SURFACE.toInt());
         List<Dict> shifts = dictService.findByType(DictType.WORK_SHIFT.toInt());
+        List<Dict> tunnels = dictService.findByType(DictType.)
         model.addAttribute("surfaces", surfaces);
         model.addAttribute("serverTime", new DateTime());
         model.addAttribute("shifts", shifts);
