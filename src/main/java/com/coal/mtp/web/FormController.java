@@ -23,9 +23,17 @@ public class FormController {
     public String edit(Model model) {
         List<Dict> surfaces = dictService.findByType(DictType.WORKING_SURFACE.toInt());
         List<Dict> shifts = dictService.findByType(DictType.WORK_SHIFT.toInt());
+        List<Dict> tunnels = dictService.findByType(DictType.TUNNEL.toInt());
+        List<Dict> observePoints = dictService.findByType(DictType.OBSERVE_POINT.toInt());
+        List<Dict> stratums = dictService.findByType(DictType.STRATUM.toInt());
+        List<Dict> observeInfos = dictService.findByType(DictType.OBSERVE_INFO.toInt());
         model.addAttribute("surfaces", surfaces);
         model.addAttribute("serverTime", new DateTime());
         model.addAttribute("shifts", shifts);
+        model.addAttribute("tunnels", tunnels);
+        model.addAttribute("observePoints", observePoints);
+        model.addAttribute("stratums", stratums);
+        model.addAttribute("observeInfos", observeInfos);
         return "form/edit";
     }
 

@@ -29,7 +29,6 @@ public class DictController {
     public String createDictItem(@PathVariable("type") Integer type, @RequestParam("name") String name){
     	Dict dict = new Dict();
     	dict.setDictType(DictType.fromInt(type));
-    	dict.setEnable(true);
     	dict.setName(name);
     	dictService.create(dict);
     	return "redirect:" + type;
@@ -55,7 +54,7 @@ public class DictController {
         DictDto dict = new DictDto();
         dict.setWorkingSurfaces(getDictItems(DictType.WORKING_SURFACE));
         dict.setWorkShifts(getDictItems(DictType.WORK_SHIFT));
-        dict.setRoadways(getDictItems(DictType.ROADWAY));
+        dict.setRoadways(getDictItems(DictType.TUNNEL));
         dict.setObservePoints(getDictItems(DictType.OBSERVE_POINT));
         dict.setObserveInfos(getDictItems(DictType.OBSERVE_INFO));
         return dict;

@@ -2,6 +2,7 @@ package com.coal.mtp.service.impl;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,8 @@ public class DictServiceImpl implements DictService {
     
     @Transactional
     public Dict create(Dict dict) {
+    	dict.setCreateTime(new DateTime());
+    	dict.setEnable(true);
         dict = dictRepo.save(dict);
         return dict;
     }

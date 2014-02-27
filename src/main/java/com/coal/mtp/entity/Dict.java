@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "dict")
@@ -25,7 +26,9 @@ public class Dict {
             @Parameter(name = "valueOfMethod", value = "fromInt") })
     private DictType dictType;
     private String name;
-    private Integer sequence;
+    @Column(name = "create_time")
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    private DateTime createTime;
     private Boolean enable;
 
     public Long getId() {
@@ -52,13 +55,13 @@ public class Dict {
         this.name = value;
     }
 
-    public Integer getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(Integer sequence) {
-        this.sequence = sequence;
-    }
+    public DateTime getCreateTime() {
+		return createTime;
+	}
+    
+    public void setCreateTime(DateTime createTime) {
+		this.createTime = createTime;
+	}
 
     public Boolean getEnable() {
         return enable;

@@ -12,7 +12,7 @@ import com.coal.mtp.entity.DictType;
 @Repository
 public interface DictRepository extends PagingAndSortingRepository<Dict, Long>{
     
-    @Query("from Dict d where d.enable=true and d.dictType=?1")
+    @Query("from Dict d where d.enable=true and d.dictType=?1 order by d.createTime desc")
     List<Dict> findByDictType(DictType dictType);
 
 }

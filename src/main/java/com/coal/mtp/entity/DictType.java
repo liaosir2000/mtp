@@ -3,7 +3,7 @@ package com.coal.mtp.entity;
 public enum DictType {
     WORKING_SURFACE(1, "工作面"), 
     WORK_SHIFT(2, "轮班"), 
-    ROADWAY(3, "巷道"), 
+    TUNNEL(3, "巷道"), 
     OBSERVE_POINT(4, "观测点"), 
     STRATUM(5, "煤(岩)层"), 
     OBSERVE_INFO(6, "观测情况");
