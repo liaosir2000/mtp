@@ -1,0 +1,9 @@
+#dictDelete {
+	cursor: pointer;
+}
+
+#form {
+	width: 800px;
+	border-bottom-width: 1px;
+	border-color: #333333;
+}

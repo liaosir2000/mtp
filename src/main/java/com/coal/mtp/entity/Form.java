@@ -38,6 +38,12 @@ public class Form implements Serializable {
     private Long observerPointId;
     @Column(name = "observer_point_name")
     private String observrePointName;
+    @Column(name = "observer_point_x")
+    private float observerPointX;
+    @Column(name = "observer_point_y")
+    private float observerPointY;
+    @Column(name = "observer_point_z")
+    private float observerPointZ;
     @Column(name = "observer_info_1")
     private Long observerInfo1;
     @Column(name = "observer_info_2")
