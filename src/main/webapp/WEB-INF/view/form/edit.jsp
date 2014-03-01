@@ -76,39 +76,39 @@
 									<tbody>
 										<tr>
 											<td>顶部</td>
-											<td>
+											<td id="roof">
 												<div>
 													<form:select path="stratum.roof[0].stratumId" class="form-control">
 														<form:option value="">--请选择--</form:option>
 														<form:options items="${config.stratums}" itemValue="id" itemLabel="name"/>
 													</form:select>厚
-													<form:input type="number" size="1" path="stratum.roof[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short"/>米
+													<form:input type="number" size="1" path="stratum.roof[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
 													<span class="glyphicon glyphicon-plus"></span>
 												</div>
 											</td>
 										</tr>
 										<tr>
 											<td>掌子面</td>
-											<td>
+											<td id="tunnel">
 												<div>
 													<form:select path="stratum.tunnel[0].stratumId" class="form-control">
 														<form:option value="">--请选择--</form:option>
 														<form:options items="${config.stratums}" itemValue="id" itemLabel="name"/>
 													</form:select>厚
-													<form:input type="number" size="1" path="stratum.tunnel[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short"/>米
+													<form:input type="number" size="1" path="stratum.tunnel[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
 													<span class="glyphicon glyphicon-plus"></span>
 												</div>
 											</td>
 										</tr>
 										<tr>
 											<td>底部</td>
-											<td>
+											<td id="floor">
 												<div>
 													<form:select path="stratum.floor[0].stratumId" class="form-control">
 														<form:option value="">--请选择--</form:option>
 														<form:options items="${config.stratums}" itemValue="id" itemLabel="name"/>
 													</form:select>厚
-													<form:input type="number" size="1" path="stratum.floor[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short"/>米
+													<form:input type="number" size="1" path="stratum.floor[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
 													<span class="glyphicon glyphicon-plus"></span>
 												</div>
 											</td>
