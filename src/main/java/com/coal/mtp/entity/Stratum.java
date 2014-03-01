@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
 
 /**
  * 岩层
@@ -30,7 +32,11 @@ public class Stratum implements Serializable {
     @Column(name = "dict_name")
     private String dictName;
     @Column(name = "layer")
-    private Integer layer;
+    @Type(type = "com.coal.mtp.util.GenericEnumUserType", parameters = {
+            @Parameter(name = "enumClass", value = "com.coal.mtp.entity.StratumLayer"),
+            @Parameter(name = "identifierMethod", value = "toInt"),
+            @Parameter(name = "valueOfMethod", value = "fromInt") })
+    private StratumLayer layer;
     @Column(name = "value")
     private Float value;
     @Column(name = "sequence")
@@ -71,4 +77,10 @@ public class Stratum implements Serializable {
     public void setSequence(Integer sequence) {
         this.sequence = sequence;
     }
+    public StratumLayer getLayer() {
+		return layer;
+	}
+    public void setLayer(StratumLayer layer) {
+		this.layer = layer;
+	}
 }

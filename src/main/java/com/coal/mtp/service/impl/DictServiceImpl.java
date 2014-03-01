@@ -33,6 +33,10 @@ public class DictServiceImpl implements DictService {
         dict = dictRepo.save(dict);
         return dict;
     }
+    
+    public Dict get(Long id) {
+    	return dictRepo.findOne(id);
+    }
 
     public List<Dict> findByType(DictType type) {
         List<Dict> dicts = dictRepo.findByDictType(type);
@@ -52,7 +56,7 @@ public class DictServiceImpl implements DictService {
         config.setServerTime(new DateTime());
         config.setWorkingSurfaces(getDictItems(DictType.WORKING_SURFACE));
         config.setShifts(getDictItems(DictType.WORK_SHIFT));
-        config.setTunnels(getDictItems(DictType.STRATUM));
+        config.setTunnels(getDictItems(DictType.TUNNEL));
         config.setObserverPoints(getDictItems(DictType.OBSERVE_POINT));
         config.setStratums(getDictItems(DictType.STRATUM));
         config.setObserverInfos(getDictItems(DictType.OBSERVE_INFO));

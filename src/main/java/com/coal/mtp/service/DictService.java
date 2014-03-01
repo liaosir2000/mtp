@@ -11,4 +11,5 @@ public interface DictService {
     List<Dict> findByType(DictType type);
     void delete(Long dictId);
     Config getConfig(Long teamId);
+    Dict get(Long id);
 }

@@ -7,4 +7,11 @@
     
     <import resource="spring-data-jpa.xml"/>
     <context:component-scan base-package="com.coal.mtp"/>
+    <bean id="mapper" class="org.dozer.DozerBeanMapper">
+        <property name="mappingFiles">
+            <list>
+                <value>dozerBeanMapping.xml</value>
+            </list>
+        </property>
+    </bean>
 </beans>

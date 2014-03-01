@@ -1,7 +1,3 @@
-td .dictDelete {
-	cursor: pointer;
-}
-
 #form {
 	width: 800px;
 	border-width:1px;
@@ -16,4 +12,12 @@ td .dictDelete {
 
 #form .shift {
 	text-align: right;
+}
+
+.number-short {
+	width: 60px !important;
+}
+
+.innel-table {
+	margin-bottom:0px;
 }

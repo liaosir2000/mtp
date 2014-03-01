@@ -18,6 +18,15 @@
 		<mvc:argument-resolvers>
 			<bean class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
 		</mvc:argument-resolvers>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+					<bean class="com.coal.mtp.util.JodaDatetimeJsonMapper"></bean>
+				</property>
+			</bean>
+		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<mvc:default-servlet-handler />
 

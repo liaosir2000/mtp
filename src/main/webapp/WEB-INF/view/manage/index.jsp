@@ -31,7 +31,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!-- <li class="active"><a href="#">Link</a></li> -->
-					<li><a href="#">信息卡</a></li>
+					<li><a href="form">信息卡</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">配置管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="dict/1">工作面配置</a></li>
