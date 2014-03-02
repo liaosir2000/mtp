@@ -5,7 +5,7 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 <div class="container">
-	<table class="table">
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<td>工作面</td>
@@ -20,7 +20,7 @@
 					<td>${form.workingSurfaceName}</td>
 					<td>${form.tunnelName}</td>
 					<td><joda:format value="${form.createTime}" pattern="yyyy年MM月dd日 HH:mm" /></td>
-					<td><a href="<%=request.getContextPath()%>/form/${form.id}">详情</a></td>
+					<td><a href="<%=request.getContextPath()%>/form/${form.id}" class="btn btn-primary">详情</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

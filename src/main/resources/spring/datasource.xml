@@ -44,7 +44,7 @@
 			<property name="packagesToScan" value="com.coal.mtp.entity" />
 			<property name="jpaVendorAdapter">
 				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-					<property name="showSql" value="false" />
+					<property name="showSql" value="true" />
 					<property name="generateDdl" value="true" />
 				</bean>
 			</property>

@@ -17,6 +17,9 @@
 					</div>
 				</div>
 				<div class="row">
+					<form:errors></form:errors>
+				</div>
+				<div class="row">
 					<div class="col-lg-4 col-lg-offset-8">
 						<joda:format value="${config.serverTime}" pattern="yyyy年MM月dd日" />
 						<form:select path="shiftId" class="form-control">
@@ -64,14 +67,16 @@
 										<tr>
 											<td>顶部</td>
 											<td id="roof">
-												<div>
-													<form:select path="stratum.roof[0].stratumId" class="form-control">
-														<form:option value="">--请选择--</form:option>
-														<form:options items="${config.stratums}" itemValue="id" itemLabel="name"/>
-													</form:select>厚
-													<form:input type="number" size="1" path="stratum.roof[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
-													<span class="glyphicon glyphicon-plus"></span>
-												</div>
+												<c:forEach items="stratum.roof" var="stratum" varStatus="status">
+													<div>
+														<form:select path="stratum.roof[${status.index}].stratumId" class="form-control">
+															<form:option value="">--请选择--</form:option>
+															<form:options items="${config.stratums}" itemValue="id" itemLabel="name"/>
+														</form:select>厚
+														<form:input type="number" size="1" path="stratum.roof[${status.index}].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
+														<span class="glyphicon glyphicon-plus"></span>
+													</div>
+												</c:forEach>
 											</td>
 										</tr>
 										<tr>
