@@ -1,0 +1,22 @@
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="template" template="/WEB-INF/view/share/template.jsp">
+	</definition>
+	
+	<definition name="form-edit" extends="template">
+		<put-attribute name="title" value="工作面地质信息卡" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/form/edit.jsp" />
+	</definition>
+	<definition name="form-list" extends="template">
+		<put-attribute name="title" value="工作面地质信息卡" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/form/list.jsp" />
+	</definition>	
+	<definition name="form-save" extends="template">
+		<put-attribute name="title" value="信息卡提交成功" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/form/save_sucess.jsp" />
+	</definition>
+	<definition name="dict-list" extends="template">
+		<put-attribute name="title" value="配置管理" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/dict/list.jsp" />
+	</definition>
+</tiles-definitions>

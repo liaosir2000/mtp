@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="t" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
@@ -15,7 +16,7 @@
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/js/jcanvas.min.js'></script>
 <script src="<%=request.getContextPath()%>/resources/js/function.js"></script>
-	<title>地质管理</title>
+	<title><t:insertAttribute name="title" /></title>
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -33,27 +34,25 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!-- <li class="active"><a href="#">Link</a></li> -->
-					<li><a href="form">信息卡</a></li>
+					<li><a href="<%=request.getContextPath()%>/form">填写信息卡</a></li>
+					<li><a href="<%=request.getContextPath()%>/form/list">信息卡列表</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">配置管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="dict/1">工作面配置</a></li>
-							<li><a href="dict/2">轮班配置</a></li>
-							<li><a href="dict/3">巷道</a></li>
-							<li><a href="dict/4">观测点</a></li>
-							<li><a href="dict/5">观测情况</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+							<li><a href="<%=request.getContextPath()%>/dict/1">工作面配置</a></li>
+							<li><a href="<%=request.getContextPath()%>/dict/2">轮班配置</a></li>
+							<li><a href="<%=request.getContextPath()%>/dict/3">巷道</a></li>
+							<li><a href="<%=request.getContextPath()%>/dict/4">观测点</a></li>
+							<li><a href="<%=request.getContextPath()%>/dict/5">观测情况</a></li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	<div>
-	
+	<div id="page-body">
+		<t:insertAttribute name="content" />
 	</div>
 </body>
 </html>

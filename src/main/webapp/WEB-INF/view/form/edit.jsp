@@ -4,20 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
-<script src="<%=request.getContextPath()%>/resources/js/jquery-1.11.0.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-<script src='<%=request.getContextPath()%>/resources/js/jcanvas.min.js'></script>
-<script src="<%=request.getContextPath()%>/resources/js/function.js"></script>
-<title>工作面地质信息卡</title>
-</head>
-<body>
 	<form:form action="form" method="POST" class="form-inline" role="form" commandName="dto">
 		<div class="container">
 			<div id="form">
@@ -162,5 +148,3 @@
 			</div>
 		</div>
 	</form:form>
-</body>
-</html>

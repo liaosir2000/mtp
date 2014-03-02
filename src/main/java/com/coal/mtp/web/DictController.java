@@ -38,7 +38,7 @@ public class DictController {
 		List<Dict> dicts = dictService.findByType(dictType);
     	model.addAttribute("dicts", dicts);
     	model.addAttribute("type", dictType.getName());
-    	return "dict/list";
+    	return "dict-list";
     }
     
     @RequestMapping(value = "/{type}/{id}", params = "delete")

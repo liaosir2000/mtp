@@ -1,9 +1,12 @@
 package com.coal.mtp.web;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,36 +28,37 @@ public class FormController {
     @Autowired
     private FormService formService;
     
-    //@RequestMapping(method = RequestMethod.GET)
-    public String edit(@PathVariable("teamId") Long teamId, BindingResult result, Model model) {
-        Config config = dictService.getConfig(teamId);
-        model.addAttribute("config", config);
-        return "form/edit";
-    }
-    
     @RequestMapping
     public String save(@ModelAttribute("dto") @Valid FormDto dto, BindingResult result, Model model) {
     	if (result.hasErrors()) {
     		Config config = dictService.getConfig(null);
             model.addAttribute("config", config);
-            return "form/edit";
+            return "form-edit";
     	} else {
     		Form form = formService.create(dto);
     		return "redirect:form/" + form.getId() + "/submit";
     	}
     }
+    
+    @RequestMapping(value = "/list")
+    public String list(@PageableDefault(page =0, size = 20) Pageable pageable, Model model) {
+    	List<Form> forms = formService.findAll(pageable);
+    	model.addAttribute("forms", forms);
+    	return "form-list";
+    }
+    
     @RequestMapping(value = "/{formId}")
     public String view(@PathVariable("formId") Long formId, Model model) {
     	Config config = dictService.getConfig(null);
     	FormDto dto = formService.getDto(formId);
         model.addAttribute("config", config);
         model.addAttribute("dto", dto);
-        return "form/edit";
+        return "form-edit";
     }
     
     @RequestMapping(value = "/{formId}/submit")
     public String submitSuccess(@PathVariable("formId") Long formId) {
-    	return "form/save_success";
+    	return "form-save";
     }
 
 }

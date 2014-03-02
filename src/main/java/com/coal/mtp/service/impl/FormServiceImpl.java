@@ -6,6 +6,8 @@ import java.util.List;
 import org.dozer.Mapper;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.coal.mtp.dto.FormDto;
@@ -39,7 +41,7 @@ public class FormServiceImpl implements FormService {
         form.setObserverPointX(Float.parseFloat(dto.getObserverPointAhead()[0]));
         form.setObserverPointY(Float.parseFloat(dto.getObserverPointAhead()[1]));
         form.setObserverPointZ(Float.parseFloat(dto.getObserverPointAhead()[2]));
-        //form = buildForm(form);
+        form = buildForm(form);
         form = formRepo.save(form);
         List<Stratum> stratums = new ArrayList<Stratum>();
         int i = 0;
@@ -91,6 +93,11 @@ public class FormServiceImpl implements FormService {
     	depths = convert(floors);
     	dto.getStratum().setFloor(depths);
     	return dto;
+    }
+    
+    public List<Form> findAll(Pageable pageable) {
+    	 Page<Form> forms = formRepo.findAll(pageable);
+    	 return forms.getContent();
     }
 
 	private List<Depth> convert(List<Stratum> roofs) {

@@ -3,20 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="../resources/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="../resources/css/main.css">
-<script src="../resources/js/jquery-1.11.0.min.js"></script>
-<script src="../resources/js/bootstrap.min.js"></script>
-<script src="../resources/js/function.js"></script>
-<title>${type}配置管理</title>
-</head>
-<body>
-	<div id="config">
+
+	<div class="container">
 		<div class="h1">${type}配置管理</div>
 		<div class="container">
 			<div class="row">
@@ -41,5 +29,3 @@
 			</c:forEach>
 		</table>
 	</div>
-</body>
-</html>
