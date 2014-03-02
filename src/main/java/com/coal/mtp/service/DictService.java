@@ -10,6 +10,6 @@ public interface DictService {
     Dict create(Dict dict);
     List<Dict> findByType(DictType type);
     void delete(Long dictId);
-    Config getConfig(Long teamId);
+    Config getConfig(Long teamId, boolean accessToken);
     Dict get(Long id);
 }

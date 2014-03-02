@@ -4,7 +4,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
-	<form:form action="form" method="POST" class="form-inline" role="form" commandName="dto">
+	<form:form action="${path}/form" method="POST" class="form-inline" role="form" commandName="dto">
+		<form:hidden path="id"/>
 		<div class="container">
 			<div id="form">
 				<div class="row">

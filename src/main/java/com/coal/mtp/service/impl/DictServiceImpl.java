@@ -49,10 +49,12 @@ public class DictServiceImpl implements DictService {
         dictRepo.save(dict);
     }
     
-    public Config getConfig(Long teamId) {
+    public Config getConfig(Long teamId, boolean token) {
         Config config = new Config();
-        AccessToken accessToken = accessTokenService.create();
-        config.setAccessToken(accessToken.getToken());
+        if (token) {
+        	AccessToken accessToken = accessTokenService.create();
+        	config.setAccessToken(accessToken.getToken());
+        }
         config.setServerTime(new DateTime());
         config.setWorkingSurfaces(getDictItems(DictType.WORKING_SURFACE));
         config.setShifts(getDictItems(DictType.WORK_SHIFT));

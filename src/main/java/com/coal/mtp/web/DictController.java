@@ -47,10 +47,10 @@ public class DictController {
         return "redirect:../"+type;
     }
 
-    @RequestMapping(value = "/conf/{teamId}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = {"/conf", "/conf/{teamId}"}, method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Config getAllDict(@PathVariable("teamId") Long teamId) {
-        Config config = dictService.getConfig(teamId);
+        Config config = dictService.getConfig(teamId, true);
         return config;
     }
 }

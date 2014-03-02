@@ -31,7 +31,7 @@ public class FormController {
     @RequestMapping
     public String save(@ModelAttribute("dto") @Valid FormDto dto, BindingResult result, Model model) {
     	if (result.hasErrors()) {
-    		Config config = dictService.getConfig(null);
+    		Config config = dictService.getConfig(null, false);
             model.addAttribute("config", config);
             return "form-edit";
     	} else {
@@ -49,7 +49,7 @@ public class FormController {
     
     @RequestMapping(value = "/{formId}")
     public String view(@PathVariable("formId") Long formId, Model model) {
-    	Config config = dictService.getConfig(null);
+    	Config config = dictService.getConfig(null, false);
     	FormDto dto = formService.getDto(formId);
         model.addAttribute("config", config);
         model.addAttribute("dto", dto);

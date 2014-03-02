@@ -2,6 +2,9 @@ $(function(){
 	var STYLE_COAL = "#000";//煤层
 	var STYLE_MUD = "#996633";//泥岩
 	var STYLE_ASH = "#A8A8A8";//灰岩
+	
+	var canvas = $('canvas');
+	
 	$(".dictDelete").click(function(){
 		var _self = $(this);
 		var _id = _self.data('id');
@@ -44,48 +47,7 @@ $(function(){
 	
 	
 	var renderCanvas = function() {
-		var canvas = $('canvas');
-		canvas.clearCanvas();
-		canvas.drawRect({
-			fillStyle:STYLE_COAL,
-			fromCenter:false,
-			x:5,y:5,
-			width:25,
-			height:10
-		}).drawText({
-			fillStyle: '#000',
-			fromCenter:false,
-			strokeWidth: 1,
-			x: 35, y: 5,
-			fontSize: 6,
-    		text: '煤层'
-		}).drawRect({
-			fillStyle:STYLE_MUD,
-			fromCenter:false,
-			x:70,y:5,
-			width:25,
-			height:10
-		}).drawText({
-			fillStyle: '#000',
-			strokeWidth: 1,
-			fromCenter:false,
-			x: 100, y: 5,
-			fontSize: 6,
-    		text: '泥岩'
-		}).drawRect({
-			fillStyle:STYLE_ASH,
-			fromCenter:false,
-			x:135,y:5,
-			width:25,
-			height:10
-		}).drawText({
-			fillStyle: '#000',
-			strokeWidth: 1,
-			fromCenter:false,
-			x: 165, y: 5,
-			fontSize: 6,
-    		text: '灰岩'
-		});
+		initCanvas();
 		//开始顶层
 		var roofs = collectStratums($("#roof"));
 		var x=50; var y=30;
@@ -144,9 +106,55 @@ $(function(){
 		return result;
 	};
 	
+	var initCanvas = function() {
+		canvas.clearCanvas();
+		canvas.drawRect({
+			fillStyle:STYLE_COAL,
+			fromCenter:false,
+			x:5,y:5,
+			width:25,
+			height:10
+		}).drawText({
+			fillStyle: '#000',
+			fromCenter:false,
+			strokeWidth: 1,
+			x: 35, y: 5,
+			fontSize: 6,
+    		text: '煤层'
+		}).drawRect({
+			fillStyle:STYLE_MUD,
+			fromCenter:false,
+			x:70,y:5,
+			width:25,
+			height:10
+		}).drawText({
+			fillStyle: '#000',
+			strokeWidth: 1,
+			fromCenter:false,
+			x: 100, y: 5,
+			fontSize: 6,
+    		text: '泥岩'
+		}).drawRect({
+			fillStyle:STYLE_ASH,
+			fromCenter:false,
+			x:135,y:5,
+			width:25,
+			height:10
+		}).drawText({
+			fillStyle: '#000',
+			strokeWidth: 1,
+			fromCenter:false,
+			x: 165, y: 5,
+			fontSize: 6,
+    		text: '灰岩'
+		});
+	};
+	
 	var getStyle = function(id) {
 		return id == 1 ? STYLE_COAL : (id == 2 ? STYLE_ASH : STYLE_MUD);
 	};
 	
 	$(".canvas-sensitive").blur(renderCanvas);
+	
+	renderCanvas();
 });
