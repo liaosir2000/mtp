@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -22,6 +23,7 @@ public class TunnelConfig implements Serializable {
     private Long id;
 	@Column(name = "surface_id")  
     private Long surfaceId;
+	@NotNull
     private String name;
     private Long creator;
     @Column(name = "creator_name")    
