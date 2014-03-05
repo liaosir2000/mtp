@@ -4,23 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "info_conf")
-public class InfoConfig implements Serializable {
+public class InfoConfig extends EntityId implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@Id
-    @Column(name = "id")
-    @GenericGenerator(name = "snowflake", strategy = "com.coal.mtp.util.SnowflakeIdGenerator")
-    @GeneratedValue(generator = "snowflake")
-    private Long id;
     
     private String name;
     
@@ -30,12 +22,6 @@ public class InfoConfig implements Serializable {
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     private DateTime createTime;
     private boolean enable;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
