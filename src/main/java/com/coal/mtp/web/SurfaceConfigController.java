@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coal.mtp.entity.PointConfig;
 import com.coal.mtp.entity.SurfaceConfig;
@@ -30,21 +32,21 @@ public class SurfaceConfigController {
 	@Autowired
 	private PointConfigService pointService;
 	
-	@RequestMapping()
-	public String create(SurfaceConfig surface, BindingResult result) {
+	@RequestMapping(consumes = "application/json")
+	public String create(@RequestBody SurfaceConfig surface, BindingResult result) {
 		if (result.hasErrors()) {
 			return "surface-edit";
 		} else {
 			surfaceService.create(surface);
-			return "redirect:list";
+			return "redirect:surface/list";
 		}
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) {
+	@RequestMapping(value = "/list", produces = "application/json", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SurfaceConfig> list(Model model) {
 		List<SurfaceConfig> surfaces = surfaceService.findSurfaces();
-		model.addAttribute("surfaces", surfaces);
-		return "surface-list";
+		return surfaces;
 	}
 	
 	@RequestMapping(value = "/{surfaceId}")

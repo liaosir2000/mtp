@@ -3,9 +3,11 @@ package com.coal.mtp.entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.GenericGenerator;
 
+@MappedSuperclass
 public class EntityId {
     @Id
     @Column(name = "id")

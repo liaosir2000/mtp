@@ -20,12 +20,10 @@
 				<th>配置项</th>
 				<th>操作</th>
 			</tr>
-			<c:forEach items="${dicts}" var="dict">
-				<tr>
-					<td>${dict.name}</td>
-					<td><a class="dictDelete btn btn-primary" target="_self"
-						data-type="${dict.dictType.toInt()}" data-id="${dict.id}">删除</a></td>
-				</tr>
-			</c:forEach>
+			<tr ng-repeat="surface in surfaces">
+				<td>{{surface.name}}</td>
+				<td><a class="dictDelete btn btn-primary" target="_self"
+					data-id="{{surface.id}}">删除</a></td>
+			</tr>
 		</table>
 	</div>
