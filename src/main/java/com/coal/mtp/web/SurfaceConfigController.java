@@ -32,10 +32,15 @@ public class SurfaceConfigController {
 	@Autowired
 	private PointConfigService pointService;
 	
-	@RequestMapping(consumes = "application/json")
+	@RequestMapping(method = RequestMethod.GET)
+	public String init() {
+		return "surface";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public String create(@RequestBody SurfaceConfig surface, BindingResult result) {
 		if (result.hasErrors()) {
-			return "surface-edit";
+			return "surface";
 		} else {
 			surfaceService.create(surface);
 			return "redirect:surface/list";

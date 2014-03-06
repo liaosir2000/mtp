@@ -2,7 +2,10 @@
 <tiles-definitions>
 	<definition name="template" template="/WEB-INF/view/share/template.jsp">
 	</definition>
-	
+	<definition name="surface" extends="template">
+		<put-attribute name="title" value="工作面配置管理" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/surface/surface.jsp" />
+	</definition>
 	<definition name="form-edit" extends="template">
 		<put-attribute name="title" value="工作面地质信息卡" cascade="true"/>
 		<put-attribute name="content" value="/WEB-INF/view/form/edit.jsp" />
