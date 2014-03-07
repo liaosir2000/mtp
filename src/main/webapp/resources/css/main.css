@@ -15,9 +15,13 @@
 }
 
 .input-short {
-	width: 30px !important;
+	width: 80px !important;
 }
 
 .innel-table {
 	margin-bottom:0px;
+}
+
+a .pointer {
+	cursor: pointer;
 }

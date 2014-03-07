@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -19,13 +20,14 @@ import org.joda.time.DateTime;
 public class StratumConfig extends EntityId implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-    
+    @NotNull
     private String name;
     
     private Long creator;
     @Column(name = "creator_name")    
     private String creatorName;
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    @Column(name = "create_time")
     private DateTime createTime;
     private boolean enable;
 	public String getName() {

@@ -6,6 +6,18 @@
 		<put-attribute name="title" value="工作面配置管理" cascade="true"/>
 		<put-attribute name="content" value="/WEB-INF/view/surface/surface.jsp" />
 	</definition>
+	<definition name="shift" extends="template">
+		<put-attribute name="title" value="轮班配置管理" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/shift/shift.jsp" />
+	</definition>
+	<definition name="info" extends="template">
+		<put-attribute name="title" value="观测信息配置管理" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/info/info.jsp" />
+	</definition>
+	<definition name="stratum" extends="template">
+		<put-attribute name="title" value="岩层配置管理" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/stratum/stratum.jsp" />
+	</definition>	
 	<definition name="form-edit" extends="template">
 		<put-attribute name="title" value="工作面地质信息卡" cascade="true"/>
 		<put-attribute name="content" value="/WEB-INF/view/form/edit.jsp" />

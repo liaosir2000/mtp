@@ -41,11 +41,10 @@
 					<li><a href="<%=request.getContextPath()%>/form/list">信息卡列表</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">配置管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="<%=request.getContextPath()%>/dict/1">工作面配置</a></li>
-							<li><a href="<%=request.getContextPath()%>/dict/2">轮班配置</a></li>
-							<li><a href="<%=request.getContextPath()%>/dict/3">巷道</a></li>
-							<li><a href="<%=request.getContextPath()%>/dict/4">观测点</a></li>
-							<li><a href="<%=request.getContextPath()%>/dict/5">观测情况</a></li>
+							<li><a href="<%=request.getContextPath()%>/surface/conf">工作面配置</a></li>
+							<li><a href="<%=request.getContextPath()%>/stratum/conf">观测情况</a></li>
+							<li><a href="<%=request.getContextPath()%>/shift/conf">轮班配置</a></li>
+							<li><a href="<%=request.getContextPath()%>/info/conf">观测情况</a></li>
 						</ul>
 					</li>
 				</ul>

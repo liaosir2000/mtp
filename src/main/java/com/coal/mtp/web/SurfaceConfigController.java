@@ -32,12 +32,17 @@ public class SurfaceConfigController {
 	@Autowired
 	private PointConfigService pointService;
 	
+	@RequestMapping(value = "/conf")
+	public String init() {
+		return "surface";
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public void create(@RequestBody SurfaceConfig surface, BindingResult result) {
 		surfaceService.create(surface);
 	}
 	
-	@RequestMapping(produces = "application/json", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, produces = "application/json" )
 	@ResponseBody
 	public List<SurfaceConfig> list(Model model) {
 		List<SurfaceConfig> surfaces = surfaceService.findSurfaces();

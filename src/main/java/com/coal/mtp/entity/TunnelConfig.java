@@ -21,6 +21,7 @@ public class TunnelConfig extends EntityId implements Serializable {
     @Column(name = "creator_name")    
     private String creatorName;
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    @Column(name = "create_time")    
     private DateTime createTime;
     private boolean enable;
 	public Long getSurfaceId() {
