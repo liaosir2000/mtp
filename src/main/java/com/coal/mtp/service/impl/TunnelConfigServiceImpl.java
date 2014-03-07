@@ -25,6 +25,10 @@ public class TunnelConfigServiceImpl implements TunnelConfigService {
 	public List<TunnelConfig> findTunnels(Long surfaceId) {
 		return repo.findBySurfaceId(surfaceId);
 	}
+	
+	public List<TunnelConfig> findAll() {
+		return repo.findByEnable(true);
+	}
 
 	public boolean deleteTunnel(Long tunnelId) {
 		TunnelConfig tunnel = repo.findOne(tunnelId);

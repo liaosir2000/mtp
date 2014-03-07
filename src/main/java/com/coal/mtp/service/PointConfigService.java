@@ -10,6 +10,8 @@ public interface PointConfigService {
 	
 	List<PointConfig> findPoints(Long tunnelId);
 	
+	List<PointConfig> findAll();
+	
 	void deletePoint(Long pointId);
 	
 }

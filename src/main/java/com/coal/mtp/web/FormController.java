@@ -14,20 +14,29 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coal.mtp.dto.Config;
 import com.coal.mtp.dto.FormDto;
 import com.coal.mtp.entity.Form;
-import com.coal.mtp.service.DictService;
+import com.coal.mtp.service.ConfigService;
 import com.coal.mtp.service.FormService;
 
 @Controller
 @RequestMapping(value = "/form")
 public class FormController {
     @Autowired
-    private DictService dictService;
+    private ConfigService configService;
     @Autowired
     private FormService formService;
+    
+    @RequestMapping(value = "/conf", produces = "application/json")
+    @ResponseBody
+    public Config getConfig(@RequestParam(value = "teamId", required = false) Long teamId) {
+    	Config config = configService.getConfig(teamId, true);
+    	return config;
+    }
     
     @RequestMapping
     public String save(@ModelAttribute("dto") @Valid FormDto dto, BindingResult result, Model model) {

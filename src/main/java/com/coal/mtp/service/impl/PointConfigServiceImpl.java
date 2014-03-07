@@ -25,6 +25,10 @@ public class PointConfigServiceImpl implements PointConfigService {
 	public List<PointConfig> findPoints(Long tunnelId) {
 		return repo.findByTunnelId(tunnelId);
 	}
+	
+	public List<PointConfig> findAll() {
+		return repo.findByEnable(true);
+	}
 
 	public void deletePoint(Long pointId) {
 		PointConfig point = repo.findOne(pointId);

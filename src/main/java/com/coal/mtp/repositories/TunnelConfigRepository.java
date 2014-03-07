@@ -11,4 +11,6 @@ public interface TunnelConfigRepository extends CrudRepository<TunnelConfig, Lon
 
 	@Query("from TunnelConfig t where t.enable=true and t.surfaceId=?1 order by t.createTime desc")
 	List<TunnelConfig> findBySurfaceId(Long surfaceId);
+
+	List<TunnelConfig> findByEnable(boolean b);
 }

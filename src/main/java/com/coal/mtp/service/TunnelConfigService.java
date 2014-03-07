@@ -10,6 +10,8 @@ public interface TunnelConfigService {
 	
 	List<TunnelConfig> findTunnels(Long surfaceId);
 	
+	List<TunnelConfig> findAll();
+	
 	boolean deleteTunnel(Long tunnelId);
 
 }

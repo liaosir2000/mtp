@@ -9,84 +9,63 @@ public class Config {
     private String message;
     private DateTime serverTime;
     private String accessToken;
-    private DictItem team;
-    private List<DictItem> shifts;
-    private List<DictItem> workingSurfaces;
-    private List<DictItem> tunnels;
-    private List<DictItem> observerPoints;
-    private List<DictItem> stratums;
-    private List<DictItem> observerInfos;
-    private List<DictItem> teamMembers;
-    public boolean isSuccess() {
-        return success;
-    }
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-    public String getMessage() {
-        return message;
-    }
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    public DateTime getServerTime() {
-        return serverTime;
-    }
-    public void setServerTime(DateTime serverTime) {
-        this.serverTime = serverTime;
-    }
-    public String getAccessToken() {
-        return accessToken;
-    }
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-    public DictItem getTeam() {
-        return team;
-    }
-    public void setTeam(DictItem team) {
-        this.team = team;
-    }
-    public List<DictItem> getShifts() {
-        return shifts;
-    }
-    public void setShifts(List<DictItem> shifts) {
-        this.shifts = shifts;
-    }
-    public List<DictItem> getWorkingSurfaces() {
-        return workingSurfaces;
-    }
-    public void setWorkingSurfaces(List<DictItem> workingSurfaces) {
-        this.workingSurfaces = workingSurfaces;
-    }
-    public List<DictItem> getTunnels() {
-        return tunnels;
-    }
-    public void setTunnels(List<DictItem> tunnels) {
-        this.tunnels = tunnels;
-    }
-    public List<DictItem> getObserverPoints() {
-        return observerPoints;
-    }
-    public void setObserverPoints(List<DictItem> observerPoints) {
-        this.observerPoints = observerPoints;
-    }
-    public List<DictItem> getStratums() {
-        return stratums;
-    }
-    public void setStratums(List<DictItem> stratums) {
-        this.stratums = stratums;
-    }
-    public List<DictItem> getObserverInfos() {
-        return observerInfos;
-    }
-    public void setObserverInfos(List<DictItem> observerInfos) {
-        this.observerInfos = observerInfos;
-    }
-    public List<DictItem> getTeamMembers() {
-        return teamMembers;
-    }
-    public void setTeamMembers(List<DictItem> teamMembers) {
-        this.teamMembers = teamMembers;
-    }
+    private Team team;
+    private List<Item> shifts;
+    private List<Surface> surfaces;
+    private List<Item> stratums;
+    private List<Item> infos;
+	public boolean isSuccess() {
+		return success;
+	}
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public DateTime getServerTime() {
+		return serverTime;
+	}
+	public void setServerTime(DateTime serverTime) {
+		this.serverTime = serverTime;
+	}
+	public String getAccessToken() {
+		return accessToken;
+	}
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+	public Team getTeam() {
+		return team;
+	}
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+	public List<Item> getShifts() {
+		return shifts;
+	}
+	public void setShifts(List<Item> shifts) {
+		this.shifts = shifts;
+	}
+	public List<Surface> getSurfaces() {
+		return surfaces;
+	}
+	public void setSurfaces(List<Surface> surfaces) {
+		this.surfaces = surfaces;
+	}
+	public List<Item> getStratums() {
+		return stratums;
+	}
+	public void setStratums(List<Item> stratums) {
+		this.stratums = stratums;
+	}
+	public List<Item> getInfos() {
+		return infos;
+	}
+	public void setInfos(List<Item> infos) {
+		this.infos = infos;
+	}
 }
