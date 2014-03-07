@@ -4,56 +4,67 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
-	<div class="container"  >
+	<div class="container" ng-controller="Surface" >
 		<div class="col-lg-4">
 			<div class="h1">工作面配置管理</div>
 			<div class="row">
-				<form class="form-inline" ng-submit="submit()" ng-controller="SurfaceEdit">
-					<input type="text" name="name" ng-model="name" placeholder="配置项名称" class="form-control">
+				<form class="form-inline" ng-submit="createSurface()">
+					<input type="text" name="name" ng-model="name" placeholder="工作面名称" class="form-control">
 					<input type="submit" value="新建" class="btn btn-primary">
 				</form>
 			</div>
-			<table class="table table-striped" ng-controller="SurfaceLoading">
+			<table class="table table-striped">
 				<tr>
 					<th>配置项</th>
 					<th>操作</th>
 				</tr>
 				<tr ng-repeat="surface in surfaces">
-					<td>{{surface.name}}</td>
-					<td><a class="dictDelete btn btn-primary" target="_self"
-						data-id="{{surface.id}}">删除</a></td>
+					<td><a ng-click="selectSurface($index)">{{surface.name}}</a></td>
+					<td><a class="btn btn-primary" ng-click="deleteSurface($index)">删除</a></td>
 				</tr>
 			</table>
 		</div>
 		<div class="col-lg-4">
 			<div class="h1">巷道配置管理</div>
+			<div class="row">
+				<form class="form-inline" ng-submit="createTunnel()">
+					<input type="text" name="name" ng-model="tunnelName" placeholder="巷道名称" class="form-control">
+					<input type="submit" value="新建" class="btn btn-primary">
+				</form>
+			</div>
+			<table class="table table-striped">
+				<tr>
+					<th>配置项</th>
+					<th>操作</th>
+				</tr>
+			    <tr ng-repeat="tunnel in tunnels">
+					<td><a ng-click="selectTunnel($index)">{{tunnel.name}}</a></td>
+					<td><a class="btn btn-primary" ng-click="deleteTunnel($index)">删除</a></td>
+				</tr>
+			</table>
 		</div>
 		<div class="col-lg-4">
 			<div class="h1">观测点配置管理</div>
+			<div class="row">
+				<form class="form-inline" ng-submit="createPoint()">
+					<input type="text" name="pointName" ng-model="pointName" placeholder="观测点名称" class="form-control">
+					坐标
+					X=<input type="number" name="x" ng-model="x" placeholder="" class="form-control input-short">
+					Y=<input type="number" name="y" ng-model="y" placeholder="" class="form-control input-short">
+					Z=<input type="number" name="z" ng-model="z" placeholder="" class="form-control input-short">
+					<input type="submit" value="新建" class="btn btn-primary">
+				</form>
+			</div>
+			<table class="table table-striped">
+				<tr>
+					<th>配置项</th>
+					<th>操作</th>
+				</tr>
+			    <tr ng-repeat="point in points">
+					<td>{{point.name}}</td>
+					<td><a class="btn btn-primary" ng-click="deletePoint($index)">删除</a></td>
+				</tr>
+			</table>
 		</div>
 	</div>
-
-<script type="text/javascript">
-function SurfaceEdit($scope, $http) {
-	$scope.submit = function(){
-		$http.post("surface", {name:$scope.name})
-		.success(function(data, status, headers, config){
-			
-		})
-		.error(function(data, status, headers, config){
-			
-		});
-		$scope.name = "";
-	};
-};
-
-function SurfaceLoading($scope, $http) {
-	$http.get("surface/list")
-	.success(function(data, status, headers, config){
-		$scope.surfaces = data;
-	})
-	.error(function(data, status, headers, config){
-		
-	});
-}
-</script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/surface.js"></script>

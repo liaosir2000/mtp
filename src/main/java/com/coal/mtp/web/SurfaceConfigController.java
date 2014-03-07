@@ -32,82 +32,63 @@ public class SurfaceConfigController {
 	@Autowired
 	private PointConfigService pointService;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String init() {
-		return "surface";
-	}
-	
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	public String create(@RequestBody SurfaceConfig surface, BindingResult result) {
-		if (result.hasErrors()) {
-			return "surface";
-		} else {
-			surfaceService.create(surface);
-			return "redirect:surface/list";
-		}
+	public void create(@RequestBody SurfaceConfig surface, BindingResult result) {
+		surfaceService.create(surface);
 	}
 	
-	@RequestMapping(value = "/list", produces = "application/json", method = RequestMethod.GET)
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET)
 	@ResponseBody
 	public List<SurfaceConfig> list(Model model) {
 		List<SurfaceConfig> surfaces = surfaceService.findSurfaces();
 		return surfaces;
 	}
 	
-	@RequestMapping(value = "/{surfaceId}")
-	public String delete(@PathVariable("surfaceId") Long surfaceId) {
+	@RequestMapping(value = "/{surfaceId}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void delete(@PathVariable("surfaceId") Long surfaceId) {
 		surfaceService.deleteSurface(surfaceId);
-		return "redirect:list";
 	}
 	
-	@RequestMapping(value = "/{surfaceId}/tunnel")
-	public String createTunnel(@PathVariable("surfaceId") Long surfaceId, TunnelConfig tunnel, BindingResult result) {
-		if (result.hasErrors()) {
-			return "tunnel-edit";
-		} else {
-			tunnel.setSurfaceId(surfaceId);
-			tunnelService.create(tunnel);
-			return "redirect:tunnel/list";
-		}
+	@RequestMapping(value = "/{surfaceId}/tunnel", method = RequestMethod.POST)
+	@ResponseBody
+	public void createTunnel(@PathVariable("surfaceId") Long surfaceId, @RequestBody TunnelConfig tunnel, BindingResult result) {
+		tunnel.setSurfaceId(surfaceId);
+		tunnelService.create(tunnel);
 	}
 	
-	@RequestMapping(value = "/{surfaceId}/tunnel/list")
-	public String listTunnels(@PathVariable("surfaceId") Long surfaceId, Model model) {
+	@RequestMapping(value = "/{surfaceId}/tunnel", method = RequestMethod.GET)
+	@ResponseBody
+	public List<TunnelConfig> listTunnels(@PathVariable("surfaceId") Long surfaceId, Model model) {
 		List<TunnelConfig> tunnels = tunnelService.findTunnels(surfaceId);
-		model.addAttribute("tunnels", tunnels);
-		return "tunnel-list";
+		return tunnels;
 	}
 	
-	@RequestMapping(value = "/{surfaceId}/tunnel/{tunnelId}")
-	public String deleteTunnel(@PathVariable("surfaceId") Long surfaceId, @PathVariable("tunnelId") Long tunnelId) {
+	@RequestMapping(value = "/{surfaceId}/tunnel/{tunnelId}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteTunnel(@PathVariable("surfaceId") Long surfaceId, @PathVariable("tunnelId") Long tunnelId) {
 		tunnelService.deleteTunnel(tunnelId);
-		return "redirect:list";
 	}
 	
-	@RequestMapping(value = "/{surfaceId}/tunnel/{tunnelId}/point")
-	public String  createPoint(@PathVariable("surfaceId") Long surfaceId, @PathVariable("tunnelId") Long tunnelId, 
-			PointConfig point, BindingResult result) {
-		if (result.hasErrors()) {
-			return "point-edit";
-		} else {
-			point.setTunnelId(tunnelId);
-			pointService.create(point);
-			return "redirect:point/list";
-		}
+	@RequestMapping(value = "/{surfaceId}/tunnel/{tunnelId}/point", method = RequestMethod.POST)
+	@ResponseBody
+	public void  createPoint(@PathVariable("surfaceId") Long surfaceId, @PathVariable("tunnelId") Long tunnelId, 
+	        @RequestBody PointConfig point, BindingResult result) {
+		point.setTunnelId(tunnelId);
+		pointService.create(point);
 	}
 	
-	@RequestMapping(value = "/{surfaceId}/tunnel/{tunnelId}/point/list")
-	public String listPoints(@PathVariable("surfaceId") Long surfaceId, @PathVariable("tunnelId") Long tunnelId,
-			Model model) {
+	@RequestMapping(value = "/{surfaceId}/tunnel/{tunnelId}/point", method = RequestMethod.GET)
+	@ResponseBody
+	public List<PointConfig> listPoints(@PathVariable("surfaceId") Long surfaceId, @PathVariable("tunnelId") Long tunnelId) {
 		List<PointConfig> points = pointService.findPoints(tunnelId);
-		model.addAttribute("points", points);
-		return "point-list";
+		return points;
 	}
 	
-	@RequestMapping(value = "/{surfaceId}/tunnel/{tunnelId}/point/{pointId}")
-	public String deletePoint(@PathVariable("surfaceId") Long surfaceId, @PathVariable("tunnelId") Long tunnelId,
+	@RequestMapping(value = "/{surfaceId}/tunnel/{tunnelId}/point/{pointId}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deletePoint(@PathVariable("surfaceId") Long surfaceId, @PathVariable("tunnelId") Long tunnelId,
 			@PathVariable("pointId") Long pointId) {
 		pointService.deletePoint(pointId);
-		return "redirect:list";
 	}
 }

@@ -18,7 +18,7 @@
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/angular.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/js/jcanvas.min.js'></script>
-<script src="<%=request.getContextPath()%>/resources/js/function.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/resources/js/function.js"></script> --%>
 	<title><t:insertAttribute name="title" /></title>
 </head>
 <body>
