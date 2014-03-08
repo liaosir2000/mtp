@@ -101,7 +101,7 @@
 							<td>顶板锚杆及锚索施工情况</td>
 							<td>
 								<select ng-model="roofAnchor" class="form-control">
-									<options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
+									<option ng-repeat="info in config.infos" value="{{info.id}}">{{info.name}}</option>
 								</select>
 							</td>
 						</tr>
@@ -109,7 +109,7 @@
 							<td>超前探眼情况</td>
 							<td>
 								<select ng-model="aheadHole" class="form-control">
-									<options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
+									<option ng-repeat="info in config.infos" value="{{info.id}}">{{info.name}}</option>
 								</select>
 							</td>
 						</tr>						
@@ -117,7 +117,7 @@
 							<td>掌子面煤岩层、瓦斯、涌水有无变化</td>
 							<td>
 								<select ng-model="tunnelInfo" class="form-control">
-									<options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
+									<option ng-repeat="info in config.infos" value="{{info.id}}">{{info.name}}</option>
 								</select>
 							</td>
 						</tr>
