@@ -16,8 +16,10 @@ import com.coal.mtp.entity.Form;
 import com.coal.mtp.entity.Stratum;
 import com.coal.mtp.entity.StratumLayer;
 import com.coal.mtp.repositories.FormRepository;
+import com.coal.mtp.repositories.PointConfigRepository;
 import com.coal.mtp.repositories.StratumRepository;
-import com.coal.mtp.service.DictService;
+import com.coal.mtp.repositories.SurfaceConfigRepository;
+import com.coal.mtp.repositories.TunnelConfigRepository;
 import com.coal.mtp.service.FormService;
 
 @Service
@@ -27,7 +29,11 @@ public class FormServiceImpl implements FormService {
 	private FormRepository formRepo;
 
 	@Autowired
-	private DictService dictService;
+	private SurfaceConfigRepository surfaceCfgRepo;
+	@Autowired
+	private TunnelConfigRepository tunnelCfgRepo;
+	@Autowired
+	private PointConfigRepository pointCfgRepo;
 
 	@Autowired
 	private StratumRepository stratumRepo;
