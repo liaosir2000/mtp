@@ -108,9 +108,9 @@ public class FormServiceImpl implements FormService {
 		return dto;
 	}
 
-	public List<Form> findAll(Pageable pageable) {
+	public Page<Form> findAll(Pageable pageable) {
 		Page<Form> forms = formRepo.findAll(pageable);
-		return forms.getContent();
+		return forms;
 	}
 
 	private List<Depth> convert(List<Stratum> roofs) {
@@ -135,7 +135,7 @@ public class FormServiceImpl implements FormService {
 			form.setTunnelName(tunnelCfgRepo.findOne(form.getTunnelId()).getName());
 		}
 		if (form.getPointId() != null) {
-			form.setPointName(infoCfgRepo.findOne(form.getPointId()).getName());
+			form.setPointName(pointCfgRepo.findOne(form.getPointId()).getName());
 		}
 
 		return form;

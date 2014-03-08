@@ -1,18 +1,18 @@
 package com.coal.mtp.web;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,28 +47,33 @@ public class FormController {
     @RequestMapping(value = "/edit")
     public String edit(@RequestParam(value = "teamId", required = false) Long teamId, Model model) {
     	//Config config = configService.getConfig(teamId, false);
-    	//model.addAttribute("config", config);
+    	model.addAttribute("serverTime", new DateTime());
     	return "form-edit";
     }
     
     
-    @RequestMapping
-    public String save(@ModelAttribute("dto") @Valid FormDto dto, BindingResult result, Model model) {
+    @RequestMapping(value = "/save", consumes = "application/json")
+    public String save(@RequestBody @Valid FormDto dto, BindingResult result, Model model) {
     	if (result.hasErrors()) {
     		Config config = configService.getConfig(null, false);
             model.addAttribute("config", config);
             return "form-edit";
     	} else {
     		Form form = formService.create(dto);
-    		return "redirect:form/" + form.getId() + "/submit";
+    		return "redirect:" + form.getId() + "/submit";
     	}
     }
     
-    @RequestMapping(value = "/list")
-    public String list(@PageableDefault(page =0, size = 20, sort="createTime", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
-    	List<Form> forms = formService.findAll(pageable);
-    	model.addAttribute("forms", forms);
+    @RequestMapping(value = "/listPage")
+    public String list() {
     	return "form-list";
+    }
+    
+    @RequestMapping(value = "/list", produces = "application/json")
+    @ResponseBody
+    public Page<Form> list(@PageableDefault(page =0, size = 100, sort="createTime", direction = Sort.Direction.DESC) Pageable pageable) {
+    	Page<Form> forms = formService.findAll(pageable);
+    	return forms;
     }
     
     @RequestMapping(value = "/{formId}")

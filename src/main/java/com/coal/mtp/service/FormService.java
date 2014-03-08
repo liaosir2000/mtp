@@ -1,7 +1,6 @@
 package com.coal.mtp.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.coal.mtp.dto.FormDto;
@@ -11,5 +10,5 @@ public interface FormService {
     
     Form create(FormDto dto);
     FormDto getDto(Long formId);
-    List<Form> findAll(Pageable pageable);
+    Page<Form> findAll(Pageable pageable);
 }
