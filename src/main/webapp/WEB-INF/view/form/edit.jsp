@@ -3,29 +3,24 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
-
-	<form:form action="${path}/form" method="POST" class="form-inline" role="form" commandName="dto">
-		<form:hidden path="id"/>
+<div class="container" ng-controller="Form">
+	<form action="${path}/form/save" method="POST" class="form-inline" role="form" ng-submit="saveForm()">
+		<hidden path="id"/>
 		<div class="container">
 			<div id="form">
 				<div class="row">
 					<div class="header col-lg-12">
-						<form:select path="workingSurfaceId" class="form-control">
-							<form:option value="">--请选择--</form:option>
-							<form:options items="${config.workingSurfaces}" itemValue="id" itemLabel="name"/>
-						</form:select>工作面地质信息卡
+						<select ng-model="surfaceId" class="form-control" ng-change="selectSurface()">
+							<option ng-repeat="surface in config.surfaces" value="{{surface.id}}">{{surface.name}}</option>
+						</select>工作面地质信息卡
 					</div>
-				</div>
-				<div class="row">
-					<form:errors></form:errors>
 				</div>
 				<div class="row">
 					<div class="col-lg-4 col-lg-offset-8">
 						<joda:format value="${config.serverTime}" pattern="yyyy年MM月dd日" />
-						<form:select path="shiftId" class="form-control">
-							<form:option value="">--请选择--</form:option>
-							<form:options items="${config.shifts}" itemValue="id" itemLabel="name"/>
-						</form:select>班
+						<select ng-model="shiftId" class="form-control">
+							<option ng-repeat="shift in config.shifts" value="{{shift.id}}">{{shift.name}}</option>
+						</select>班
 					</div>
 				</div>
 				<table class="table table-bordered">
@@ -33,10 +28,9 @@
 						<tr>
 							<td>巷道名称</td>
 							<td>
-								<form:select path="tunnelId" class="form-control">
-									<form:option value="">--请选择--</form:option>
-									<form:options items="${config.tunnels}" itemValue="id" itemLabel="name"/>
-								</form:select>
+								<select ng-model="tunnelId" class="form-control" ng-change="selectTunnel()">
+									<option ng-repeat="tunnel in tunnels" value="{{tunnel.id}}">{{tunnel.name}}</option>
+								</select>
 							</td>
 							<td>煤层及顶底板柱状图</td>
 						</tr>
@@ -44,13 +38,10 @@
 							<td>观测点位置</td>
 							<td>
 								<div>
-									<form:select path="observerPointId" class="form-control">
-										<form:option value="">--请选择--</form:option>
-										<form:options items="${config.observerPoints}" itemValue="id" itemLabel="name"/>
-									</form:select>前x,y,z=
-									<form:input path="observerPointAhead[0]" type="number" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short"/>
-									<form:input path="observerPointAhead[1]" type="number" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short"/>
-									<form:input path="observerPointAhead[2]" type="number" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short"/>
+									<select ng-model="pointId" class="form-control">
+										<option ng-repeat="point in points" value="{{point.id}}">{{point.name}}</option>
+									</select>前
+									<input ng-model="pointAhead" type="number" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short"/>
 								</div>
 							</td>
 							<td rowspan="5">
@@ -69,11 +60,10 @@
 											<td id="roof">
 												<c:forEach items="stratum.roof" var="stratum" varStatus="status">
 													<div>
-														<form:select path="stratum.roof[${status.index}].stratumId" class="form-control">
-															<form:option value="">--请选择--</form:option>
-															<form:options items="${config.stratums}" itemValue="id" itemLabel="name"/>
-														</form:select>厚
-														<form:input type="number" size="1" path="stratum.roof[${status.index}].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
+														<select path="stratum.roof[${status.index}].stratumId" class="form-control">
+															<options items="${config.stratums}" itemValue="id" itemLabel="name"/>
+														</select>厚
+														<input type="number" size="1" path="stratum.roof[${status.index}].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
 														<span class="glyphicon glyphicon-plus"></span>
 													</div>
 												</c:forEach>
@@ -83,11 +73,10 @@
 											<td>掌子面</td>
 											<td id="tunnel">
 												<div>
-													<form:select path="stratum.tunnel[0].stratumId" class="form-control">
-														<form:option value="">--请选择--</form:option>
-														<form:options items="${config.stratums}" itemValue="id" itemLabel="name"/>
-													</form:select>厚
-													<form:input type="number" size="1" path="stratum.tunnel[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
+													<select path="stratum.tunnel[0].stratumId" class="form-control">
+														<options items="${config.stratums}" itemValue="id" itemLabel="name"/>
+													</select>厚
+													<input type="number" size="1" path="stratum.tunnel[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
 													<span class="glyphicon glyphicon-plus"></span>
 												</div>
 											</td>
@@ -96,11 +85,10 @@
 											<td>底部</td>
 											<td id="floor">
 												<div>
-													<form:select path="stratum.floor[0].stratumId" class="form-control">
-														<form:option value="">--请选择--</form:option>
-														<form:options items="${config.stratums}" itemValue="id" itemLabel="name"/>
-													</form:select>厚
-													<form:input type="number" size="1" path="stratum.floor[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
+													<select path="stratum.floor[0].stratumId" class="form-control">
+														<options items="${config.stratums}" itemValue="id" itemLabel="name"/>
+													</select>厚
+													<input type="number" size="1" path="stratum.floor[0].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short canvas-sensitive"/>米
 													<span class="glyphicon glyphicon-plus"></span>
 												</div>
 											</td>
@@ -112,28 +100,25 @@
 						<tr>
 							<td>顶板锚杆及锚索施工情况</td>
 							<td>
-								<form:select path="roofAnchor" class="form-control">
-									<form:option value="">--请选择--</form:option>
-									<form:options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
-								</form:select>
+								<select ng-model="roofAnchor" class="form-control">
+									<options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
+								</select>
 							</td>
 						</tr>
 						<tr>
 							<td>超前探眼情况</td>
 							<td>
-								<form:select path="aheadHole" class="form-control">
-									<form:option value="">--请选择--</form:option>
-									<form:options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
-								</form:select>
+								<select ng-model="aheadHole" class="form-control">
+									<options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
+								</select>
 							</td>
 						</tr>						
 						<tr>
 							<td>掌子面煤岩层、瓦斯、涌水有无变化</td>
 							<td>
-								<form:select path="tunnelInfo" class="form-control">
-									<form:option value="">--请选择--</form:option>
-									<form:options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
-								</form:select>
+								<select ng-model="tunnelInfo" class="form-control">
+									<options items="${config.observerInfos}" itemValue="id" itemLabel="name"/>
+								</select>
 							</td>
 						</tr>
 					</tbody>
@@ -141,10 +126,9 @@
 				<div class="row">
 					<div class="col-lg-3">
 						汇报人： 
-							<form:select path="reporter" class="form-control">
-								<form:option value="">--请选择--</form:option>
-								<form:options items="${config.teamMembers}" itemValue="id" itemLabel="name"/>
-							</form:select>
+							<select ng-model="reporter" class="form-control">
+								<options items="${config.teamMembers}" itemValue="id" itemLabel="name"/>
+							</select>
 					</div>
 					<div class="col-lg-9">施工队组:</div>
 				</div>
@@ -153,4 +137,6 @@
 				</div>
 			</div>
 		</div>
-	</form:form>
+	</form>
+</div>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/form.js"></script>

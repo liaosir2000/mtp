@@ -11,13 +11,13 @@ public class FormDto implements Serializable{
 	private String teamId;//队组
 	private String reporter;//汇报人
 	@NotNull
-	private Long workingSurfaceId;
+	private Long surfaceId;
 	@NotNull
 	private Long shiftId;
 	@NotNull
 	private Long tunnelId;
-	private Long observerPointId;
-	private String[] observerPointAhead = new String[3];//x,y,z
+	private Long pointId;
+	private Float pointAhead;
 	private StratumDepth stratum = new StratumDepth();
 	private Long roofAnchor;
 	private Long aheadHole;
@@ -40,11 +40,11 @@ public class FormDto implements Serializable{
 	public void setReporter(String reporter) {
 		this.reporter = reporter;
 	}
-	public Long getWorkingSurfaceId() {
-		return workingSurfaceId;
+	public Long getSurfaceId() {
+		return surfaceId;
 	}
-	public void setWorkingSurfaceId(Long workingSurfaceId) {
-		this.workingSurfaceId = workingSurfaceId;
+	public void setSurfaceId(Long surfaceId) {
+		this.surfaceId = surfaceId;
 	}
 	public Long getShiftId() {
 		return shiftId;
@@ -58,17 +58,17 @@ public class FormDto implements Serializable{
 	public void setTunnelId(Long tunnelId) {
 		this.tunnelId = tunnelId;
 	}
-	public Long getObserverPointId() {
-		return observerPointId;
+	public Long getPointId() {
+		return pointId;
 	}
-	public void setObserverPointId(Long observerPointId) {
-		this.observerPointId = observerPointId;
+	public void setPointId(Long pointId) {
+		this.pointId = pointId;
 	}
-	public String[] getObserverPointAhead() {
-		return observerPointAhead;
+	public Float getPointAhead() {
+		return pointAhead;
 	}
-	public void setObserverPointAhead(String[] observerPointAhead) {
-		this.observerPointAhead = observerPointAhead;
+	public void setPointAhead(Float pointAhead) {
+		this.pointAhead = pointAhead;
 	}
 	public StratumDepth getStratum() {
 		return stratum;

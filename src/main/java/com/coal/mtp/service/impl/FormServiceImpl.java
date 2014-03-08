@@ -16,7 +16,9 @@ import com.coal.mtp.entity.Form;
 import com.coal.mtp.entity.Stratum;
 import com.coal.mtp.entity.StratumLayer;
 import com.coal.mtp.repositories.FormRepository;
+import com.coal.mtp.repositories.InfoConfigRepository;
 import com.coal.mtp.repositories.PointConfigRepository;
+import com.coal.mtp.repositories.ShiftConfigRepository;
 import com.coal.mtp.repositories.StratumRepository;
 import com.coal.mtp.repositories.SurfaceConfigRepository;
 import com.coal.mtp.repositories.TunnelConfigRepository;
@@ -34,6 +36,10 @@ public class FormServiceImpl implements FormService {
 	private TunnelConfigRepository tunnelCfgRepo;
 	@Autowired
 	private PointConfigRepository pointCfgRepo;
+	@Autowired
+	private ShiftConfigRepository shiftCfgRepo;
+	@Autowired
+	private InfoConfigRepository infoCfgRepo;
 
 	@Autowired
 	private StratumRepository stratumRepo;
@@ -44,9 +50,6 @@ public class FormServiceImpl implements FormService {
 	public Form create(FormDto dto) {
 		Form form = mapper.map(dto, Form.class);
 		form.setCreateTime(new DateTime());
-		form.setObserverPointX(Float.parseFloat(dto.getObserverPointAhead()[0]));
-		form.setObserverPointY(Float.parseFloat(dto.getObserverPointAhead()[1]));
-		form.setObserverPointZ(Float.parseFloat(dto.getObserverPointAhead()[2]));
 		form = buildForm(form);
 		form = formRepo.save(form);
 		List<Stratum> stratums = new ArrayList<Stratum>();
@@ -93,20 +96,13 @@ public class FormServiceImpl implements FormService {
 	public FormDto getDto(Long formId) {
 		Form form = formRepo.findOne(formId);
 		FormDto dto = mapper.map(form, FormDto.class);
-		dto.setObserverPointAhead(new String[] {
-				form.getObserverPointX().toString(),
-				form.getObserverPointY().toString(),
-				form.getObserverPointZ().toString() });
-		List<Stratum> roofs = stratumRepo.findStratums(formId,
-				StratumLayer.LAYER_ROOF);
+		List<Stratum> roofs = stratumRepo.findStratums(formId, StratumLayer.LAYER_ROOF);
 		List<Depth> depths = convert(roofs);
 		dto.getStratum().setRoof(depths);
-		List<Stratum> tunnels = stratumRepo.findStratums(formId,
-				StratumLayer.LAYER_TUNNEL);
+		List<Stratum> tunnels = stratumRepo.findStratums(formId, StratumLayer.LAYER_TUNNEL);
 		depths = convert(tunnels);
 		dto.getStratum().setTunnel(depths);
-		List<Stratum> floors = stratumRepo.findStratums(formId,
-				StratumLayer.LAYER_FLOOR);
+		List<Stratum> floors = stratumRepo.findStratums(formId, StratumLayer.LAYER_FLOOR);
 		depths = convert(floors);
 		dto.getStratum().setFloor(depths);
 		return dto;
@@ -129,19 +125,17 @@ public class FormServiceImpl implements FormService {
 	}
 
 	private Form buildForm(Form form) {
-		if (form.getWorkingSurfaceId() != null) {
-			form.setWorkingSurfaceName(dictService.get(
-					form.getWorkingSurfaceId()).getName());
+		if (form.getSurfaceId() != null) {
+			form.setSurfaceName(surfaceCfgRepo.findOne(form.getSurfaceId()).getName());
 		}
 		if (form.getShiftId() != null) {
-			form.setShiftName(dictService.get(form.getShiftId()).getName());
+			form.setShiftName(shiftCfgRepo.findOne(form.getShiftId()).getName());
 		}
 		if (form.getTunnelId() != null) {
-			form.setTunnelName(dictService.get(form.getTunnelId()).getName());
+			form.setTunnelName(tunnelCfgRepo.findOne(form.getTunnelId()).getName());
 		}
-		if (form.getObserverPointId() != null) {
-			form.setObservrePointName(dictService
-					.get(form.getObserverPointId()).getName());
+		if (form.getPointId() != null) {
+			form.setPointName(infoCfgRepo.findOne(form.getPointId()).getName());
 		}
 
 		return form;

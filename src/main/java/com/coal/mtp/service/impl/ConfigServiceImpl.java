@@ -86,6 +86,7 @@ public class ConfigServiceImpl implements ConfigService {
 		for (SurfaceConfig config : surfaces) {
 			Surface s = mapper.map(config, Surface.class);
 			s.setTunnels(tunnels.get(s.getId()));
+			sfs.add(s);
 		}
 		return sfs;
 	}

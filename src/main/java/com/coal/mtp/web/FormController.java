@@ -31,12 +31,26 @@ public class FormController {
     @Autowired
     private FormService formService;
     
+    /**
+     * 配置信息
+     * 
+     * @param teamId
+     * @return
+     */
     @RequestMapping(value = "/conf", produces = "application/json")
     @ResponseBody
     public Config getConfig(@RequestParam(value = "teamId", required = false) Long teamId) {
     	Config config = configService.getConfig(teamId, true);
     	return config;
     }
+    
+    @RequestMapping(value = "/edit")
+    public String edit(@RequestParam(value = "teamId", required = false) Long teamId, Model model) {
+    	//Config config = configService.getConfig(teamId, false);
+    	//model.addAttribute("config", config);
+    	return "form-edit";
+    }
+    
     
     @RequestMapping
     public String save(@ModelAttribute("dto") @Valid FormDto dto, BindingResult result, Model model) {

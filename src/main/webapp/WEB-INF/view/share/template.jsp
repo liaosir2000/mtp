@@ -37,7 +37,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!-- <li class="active"><a href="#">Link</a></li> -->
-					<li><a href="<%=request.getContextPath()%>/form">填写信息卡</a></li>
+					<li><a href="<%=request.getContextPath()%>/form/edit">填写信息卡</a></li>
 					<li><a href="<%=request.getContextPath()%>/form/list">信息卡列表</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">配置管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">

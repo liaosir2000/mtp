@@ -4,27 +4,19 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "form")
-public class Form implements Serializable {
+public class Form extends EntityId implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Column(name = "id")
-    @GenericGenerator(name = "snowflake", strategy = "com.coal.mtp.util.SnowflakeIdGenerator")
-    @GeneratedValue(generator = "snowflake")
-    private Long id;
     @Column(name = "surface_id")
-    private Long workingSurfaceId;
+    private Long surfaceId;
     @Column(name = "surface_name")
-    private String workingSurfaceName;
+    private String surfaceName;
     @Column(name = "create_time")
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     private DateTime createTime;
@@ -36,16 +28,12 @@ public class Form implements Serializable {
     private Long tunnelId;
     @Column(name = "tunnel_name")
     private String tunnelName;
-    @Column(name = "observer_point_id")
-    private Long observerPointId;
-    @Column(name = "observer_point_name")
-    private String observrePointName;
-    @Column(name = "observer_point_x")
-    private Float observerPointX;
-    @Column(name = "observer_point_y")
-    private Float observerPointY;
-    @Column(name = "observer_point_z")
-    private Float observerPointZ;
+    @Column(name = "point_id")
+    private Long pointId;
+    @Column(name = "point_name")
+    private String pointName;
+    @Column(name = "point_ahead")
+    private Float pointAhead;
     @Column(name = "roof_anchor")
     private Long roofAnchor;
     @Column(name = "ahead_hole")
@@ -57,26 +45,20 @@ public class Form implements Serializable {
     @Column(name = "team_name")
     private String teamName;
     @Column(name = "reporter_id")
-    private String reporterId;
-    @Column(name = "reporter")
     private String reporter;
-	public Long getId() {
-		return id;
+    @Column(name = "reporter_name")
+    private String reporterName;
+	public Long getSurfaceId() {
+		return surfaceId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setSurfaceId(Long surfaceId) {
+		this.surfaceId = surfaceId;
 	}
-	public Long getWorkingSurfaceId() {
-		return workingSurfaceId;
+	public String getSurfaceName() {
+		return surfaceName;
 	}
-	public void setWorkingSurfaceId(Long workingSurfaceId) {
-		this.workingSurfaceId = workingSurfaceId;
-	}
-	public String getWorkingSurfaceName() {
-		return workingSurfaceName;
-	}
-	public void setWorkingSurfaceName(String workingSurfaceName) {
-		this.workingSurfaceName = workingSurfaceName;
+	public void setSurfaceName(String surfaceName) {
+		this.surfaceName = surfaceName;
 	}
 	public DateTime getCreateTime() {
 		return createTime;
@@ -108,35 +90,23 @@ public class Form implements Serializable {
 	public void setTunnelName(String tunnelName) {
 		this.tunnelName = tunnelName;
 	}
-	public Long getObserverPointId() {
-		return observerPointId;
+	public Long getPointId() {
+		return pointId;
 	}
-	public void setObserverPointId(Long observerPointId) {
-		this.observerPointId = observerPointId;
+	public void setPointId(Long pointId) {
+		this.pointId = pointId;
 	}
-	public String getObservrePointName() {
-		return observrePointName;
+	public String getPointName() {
+		return pointName;
 	}
-	public void setObservrePointName(String observrePointName) {
-		this.observrePointName = observrePointName;
+	public void setPointName(String pointName) {
+		this.pointName = pointName;
 	}
-	public Float getObserverPointX() {
-		return observerPointX;
+	public Float getPointAhead() {
+		return pointAhead;
 	}
-	public void setObserverPointX(Float observerPointX) {
-		this.observerPointX = observerPointX;
-	}
-	public Float getObserverPointY() {
-		return observerPointY;
-	}
-	public void setObserverPointY(Float observerPointY) {
-		this.observerPointY = observerPointY;
-	}
-	public Float getObserverPointZ() {
-		return observerPointZ;
-	}
-	public void setObserverPointZ(Float observerPointZ) {
-		this.observerPointZ = observerPointZ;
+	public void setPointAhead(Float pointAhead) {
+		this.pointAhead = pointAhead;
 	}
 	public Long getRoofAnchor() {
 		return roofAnchor;
@@ -168,16 +138,16 @@ public class Form implements Serializable {
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
-	public String getReporterId() {
-		return reporterId;
-	}
-	public void setReporterId(String reporterId) {
-		this.reporterId = reporterId;
-	}
 	public String getReporter() {
 		return reporter;
 	}
 	public void setReporter(String reporter) {
 		this.reporter = reporter;
+	}
+	public String getReporterName() {
+		return reporterName;
+	}
+	public void setReporterName(String reporterName) {
+		this.reporterName = reporterName;
 	}
 }
