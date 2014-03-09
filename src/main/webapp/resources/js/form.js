@@ -20,14 +20,16 @@ function Form($scope, $http) {
 	};
 	
 	$scope.addRoofLine = function() {
-		for(index in $scope.config.stratums) {
-			var stratum = $scope.config.stratums[index];
-			if (stratum.id == $scope.roofId) {
-				$scope.roofs = $scope.roofs||[];
-				$scope.roofs.unshift({stratumId:stratum.id, name:stratum.name, value: $scope.roofValue});
-				$scope.roofId = "";
-				$scope.roofValue = "";
-				break;
+		if ($scope.roofValue) {
+			for(index in $scope.config.stratums) {
+				var stratum = $scope.config.stratums[index];
+				if (stratum.id == $scope.roofId) {
+					$scope.roofs = $scope.roofs||[];
+					$scope.roofs.unshift({stratumId:stratum.id, name:stratum.name, value: $scope.roofValue});
+					$scope.roofId = "";
+					$scope.roofValue = "";
+					break;
+				}
 			}
 		}
 	};
@@ -37,14 +39,16 @@ function Form($scope, $http) {
 	};
 	
 	$scope.addTunnelLine = function() {
-		for(index in $scope.config.stratums) {
-			var stratum = $scope.config.stratums[index];
-			if (stratum.id == $scope.tunnelFaceId) {
-				$scope.tunnelFaces = $scope.tunnelFaces||[];
-				$scope.tunnelFaces.unshift({stratumId:stratum.id, name:stratum.name, value: $scope.tunnelFaceValue});
-				$scope.tunnelFaceId = "";
-				$scope.tunnelFaceValue = "";
-				break;
+		if ($scope.tunnelFaceValue) {
+			for(index in $scope.config.stratums) {
+				var stratum = $scope.config.stratums[index];
+				if (stratum.id == $scope.tunnelFaceId) {
+					$scope.tunnelFaces = $scope.tunnelFaces||[];
+					$scope.tunnelFaces.unshift({stratumId:stratum.id, name:stratum.name, value: $scope.tunnelFaceValue});
+					$scope.tunnelFaceId = "";
+					$scope.tunnelFaceValue = "";
+					break;
+				}
 			}
 		}
 	};
@@ -54,14 +58,16 @@ function Form($scope, $http) {
 	};
 	
 	$scope.addFloorLine = function() {
-		for(index in $scope.config.stratums) {
-			var stratum = $scope.config.stratums[index];
-			if (stratum.id == $scope.floorId) {
-				$scope.floors = $scope.floors||[];
-				$scope.floors.push({stratumId:stratum.id, name:stratum.name, value: $scope.floorValue});
-				$scope.floorId = "";
-				$scope.floorValue = "";
-				break;
+		if ($scope.floorValue) {
+			for(index in $scope.config.stratums) {
+				var stratum = $scope.config.stratums[index];
+				if (stratum.id == $scope.floorId) {
+					$scope.floors = $scope.floors||[];
+					$scope.floors.push({stratumId:stratum.id, name:stratum.name, value: $scope.floorValue});
+					$scope.floorId = "";
+					$scope.floorValue = "";
+					break;
+				}
 			}
 		}
 	};
@@ -81,23 +87,25 @@ function Form($scope, $http) {
 	};
 	
 	loadForm = function(formId) {
-		$http.get(formId)
-		.success(function(data, status, headers, config){
-			$scope.id = formId;
-			$scope.surfaceId = data.surfaceId;
-			$scope.tunnels = data.tunnels;
-			$scope.points = data.points;
-			$scope.shiftId = data.shiftId;
-			$scope.tunnelId = data.tunnelId;
-			$scope.pointId = data.pointId;
-			$scope.pointAhead = data.pointAhead;
-			$scope.roofs = data.stratum.roof;
-			$scope.tunnelFaces = data.stratum.tunnel;
-			$scope.floors = data.stratum.floor;
-			$scope.roofAnchor = data.roofAnchor;
-			$scope.aheadHole = data.aheadHole;
-			$scope.tunnelInfo = data.tunnelInfo;
-		});
+		if (formId) {
+			$http.get(formId)
+			.success(function(data, status, headers, config){
+				$scope.id = formId;
+				$scope.surfaceId = data.surfaceId;
+				$scope.tunnels = data.tunnels;
+				$scope.points = data.points;
+				$scope.shiftId = data.shiftId;
+				$scope.tunnelId = data.tunnelId;
+				$scope.pointId = data.pointId;
+				$scope.pointAhead = data.pointAhead;
+				$scope.roofs = data.stratum.roof;
+				$scope.tunnelFaces = data.stratum.tunnel;
+				$scope.floors = data.stratum.floor;
+				$scope.roofAnchor = data.roofAnchor;
+				$scope.aheadHole = data.aheadHole;
+				$scope.tunnelInfo = data.tunnelInfo;
+			});
+		}
 	};
 	
 	$scope.saveForm = function() {
