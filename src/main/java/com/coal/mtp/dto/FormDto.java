@@ -1,6 +1,7 @@
 package com.coal.mtp.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +23,8 @@ public class FormDto implements Serializable{
 	private Long roofAnchor;
 	private Long aheadHole;
 	private Long tunnelInfo;
+	private List<Item> tunnels;//只在编辑时起作用
+	private List<Item> points;//只在编辑时起作用
 	public Long getId() {
 		return id;
 	}
@@ -93,5 +96,17 @@ public class FormDto implements Serializable{
 	}
 	public void setTunnelInfo(Long tunnelInfo) {
 		this.tunnelInfo = tunnelInfo;
+	}
+	public List<Item> getTunnels() {
+		return tunnels;
+	}
+	public void setTunnels(List<Item> tunnels) {
+		this.tunnels = tunnels;
+	}
+	public List<Item> getPoints() {
+		return points;
+	}
+	public void setPoints(List<Item> points) {
+		this.points = points;
 	}
 }

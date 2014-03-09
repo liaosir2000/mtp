@@ -23,7 +23,7 @@
 				<td>{{form.pointName}}</td>
 				<td>{{form.createTime}}</td>
 				<td>{{form.reporterName}}</td>
-				<td><a href="<%=request.getContextPath()%>/form/{{form.id}}" class="btn btn-primary">详情</a></td>
+				<td><a href="<%=request.getContextPath()%>/form/{{form.id}}?view" class="btn btn-primary">详情</a></td>
 			</tr>
 		</tbody>
 	</table>

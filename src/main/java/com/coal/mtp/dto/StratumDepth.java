@@ -39,6 +39,7 @@ public class StratumDepth implements Serializable {
 
 	public static class Depth {
 		private Long stratumId;//岩层类型
+		private String name;//岩层名称
 		private String value;//厚度
 		public Long getStratumId() {
 			return stratumId;
@@ -51,6 +52,12 @@ public class StratumDepth implements Serializable {
 		}
 		public void setValue(String value) {
 			this.value = value;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
 		}
 	}
 }

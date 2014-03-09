@@ -70,20 +70,41 @@ function Form($scope, $http) {
 		$scope.roofs.splice(index, 1);
 	};
 	
-	loadConfig = function() {
+	$scope.loadConfig = function(formId) {
 		$http.get("conf")
 		.success(function(data, status, headers, config){
 			$scope.config = data;
-			$scope.surfaceId = $scope.config.surfaces[0].id;
+			//$scope.surfaceId = $scope.config.surfaces[0].id;
+			$scope.shiftId = data.shifts[0].id;
+		});
+		loadForm(formId);
+	};
+	
+	loadForm = function(formId) {
+		$http.get(formId)
+		.success(function(data, status, headers, config){
+			$scope.id = formId;
+			$scope.surfaceId = data.surfaceId;
+			$scope.tunnels = data.tunnels;
+			$scope.points = data.points;
+			$scope.shiftId = data.shiftId;
+			$scope.tunnelId = data.tunnelId;
+			$scope.pointId = data.pointId;
+			$scope.pointAhead = data.pointAhead;
+			$scope.roofs = data.stratum.roof;
+			$scope.tunnelFaces = data.stratum.tunnel;
+			$scope.floors = data.stratum.floor;
+			$scope.roofAnchor = data.roofAnchor;
+			$scope.aheadHole = data.aheadHole;
+			$scope.tunnelInfo = data.tunnelInfo;
 		});
 	};
 	
-	loadConfig();
-	
 	$scope.saveForm = function() {
 		$http.post("save", {
-			teamId:$scope.config.team.id,
-			reporter:$scope.reporter,
+			id:$scope.id,
+			teamId:"1",//$scope.config.team.id,
+			reporter:"2",//$scope.reporter,
 			surfaceId:$scope.surfaceId,
 			shiftId:$scope.shiftId,
 			tunnelId:$scope.tunnelId,

@@ -19,10 +19,10 @@ public class Stratum extends EntityId implements Serializable {
     private static final long serialVersionUID = 1L;
     @Column(name = "form_id")
     private Long formId;
-    @Column(name = "dict_id")
-    private Long dictId;
-    @Column(name = "dict_name")
-    private String dictName;
+    @Column(name = "stratum_conf_id")
+    private Long stratumConfigId;
+    @Column(name = "name")
+    private String name;
     @Column(name = "layer")
     @Type(type = "com.coal.mtp.util.GenericEnumUserType", parameters = {
             @Parameter(name = "enumClass", value = "com.coal.mtp.entity.StratumLayer"),
@@ -39,17 +39,17 @@ public class Stratum extends EntityId implements Serializable {
     public void setFormId(Long formId) {
         this.formId = formId;
     }
-    public Long getDictId() {
-        return dictId;
+    public Long getStratumConfigId() {
+        return stratumConfigId;
     }
-    public void setDictId(Long dictId) {
-        this.dictId = dictId;
+    public void setStratumConfigId(Long dictId) {
+        this.stratumConfigId = dictId;
     }
-    public String getDictName() {
-        return dictName;
+    public String getName() {
+        return name;
     }
-    public void setDictName(String dictName) {
-        this.dictName = dictName;
+    public void setName(String dictName) {
+        this.name = dictName;
     }
     public Float getValue() {
         return value;

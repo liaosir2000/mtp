@@ -21,8 +21,10 @@ function Surface($scope, $http) {
 	};
 	
 	$scope.selectSurface = function(index) {
+		$scope.selectedSurfaceRow = index;
 		$scope.selectSurfaceId = $scope.surfaces[index].id;
 		$scope.selectTunnelId = undefined;
+		$scope.selectTunnelRow = undefined;
 		loadTunnel();
 		loadPoint();
 	};
@@ -46,6 +48,7 @@ function Surface($scope, $http) {
 	
 	$scope.selectTunnel = function(index) {
 		$scope.selectTunnelId = $scope.tunnels[index].id;
+		$scope.selectTunnelRow = index;
 		loadPoint();
 	};
 	

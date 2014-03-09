@@ -19,7 +19,7 @@
 					<th>操作</th>
 				</tr>
 				<tr ng-repeat="surface in surfaces">
-					<td><a ng-click="selectSurface($index)" class="pointer">{{surface.name}}</a></td>
+					<td><a ng-click="selectSurface($index)" class="pointer" ng-class="{selected: $index == selectedSurfaceRow}">{{surface.name}}</a></td>
 					<td><a class="btn btn-primary" ng-click="deleteSurface($index)">删除</a></td>
 				</tr>
 			</table>
@@ -38,7 +38,7 @@
 					<th>操作</th>
 				</tr>
 			    <tr ng-repeat="tunnel in tunnels">
-					<td><a ng-click="selectTunnel($index)" class="pointer">{{tunnel.name}}</a></td>
+					<td><a ng-click="selectTunnel($index)" class="pointer" ng-class="{selected: $index == selectTunnelRow}">{{tunnel.name}}</a></td>
 					<td><a class="btn btn-primary" ng-click="deleteTunnel($index)">删除</a></td>
 				</tr>
 			</table>

@@ -76,13 +76,17 @@ public class FormController {
     	return forms;
     }
     
-    @RequestMapping(value = "/{formId}")
+    @RequestMapping(value = "/{formId}", params= "view")
     public String view(@PathVariable("formId") Long formId, Model model) {
-    	Config config = configService.getConfig(null, false);
-    	FormDto dto = formService.getDto(formId);
-        model.addAttribute("config", config);
-        model.addAttribute("dto", dto);
+    	model.addAttribute("id", formId);
         return "form-edit";
+    }
+    
+    @RequestMapping(value = "/{formId}", produces = "application/json")
+    @ResponseBody
+    public FormDto get(@PathVariable("formId") Long formId, Model model) {
+    	FormDto dto = formService.getDto(formId);
+        return dto;
     }
     
     @RequestMapping(value = "/{formId}/submit")

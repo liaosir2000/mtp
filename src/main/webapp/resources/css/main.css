@@ -15,7 +15,7 @@
 }
 
 .input-short {
-	width: 80px !important;
+	width: 74px !important;
 }
 
 .innel-table {
@@ -24,4 +24,12 @@
 
 .pointer {
 	cursor: pointer;
+}
+
+.select-middule {
+	width: 125px !important;
+}
+
+.selected {
+	background-color: lightgreen;
 }
