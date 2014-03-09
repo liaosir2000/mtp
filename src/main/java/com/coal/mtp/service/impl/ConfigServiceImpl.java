@@ -48,7 +48,7 @@ public class ConfigServiceImpl implements ConfigService {
 	@Autowired
 	private Mapper mapper;
 
-	public Config getConfig(Long teamId, boolean needToken) {
+	public Config getConfig(String teamId, boolean needToken) {
 		Config config = new Config();
 		config.setServerTime(new DateTime());
 		if (needToken) {

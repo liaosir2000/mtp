@@ -4,5 +4,5 @@ import com.coal.mtp.dto.Config;
 
 public interface ConfigService {
 
-	Config getConfig(Long teamId, boolean needToken);
+	Config getConfig(String teamId, boolean needToken);
 }

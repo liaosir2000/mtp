@@ -11,7 +11,7 @@
 }
 
 .number-short {
-	width: 60px !important;
+	width: 70px !important;
 }
 
 .input-short {
@@ -32,4 +32,16 @@
 
 .selected {
 	background-color: lightgreen;
+}
+
+.stratum-8506333422426112 {
+	background-image: url(../../resources/img/stratum/1.png);
+}
+
+.stratum-8550812441122816 {
+	background-image: url(../../resources/img/stratum/2.png);
+}
+
+.stratum-8550809416505344 {
+	background-image: url(../../resources/img/stratum/3.png);
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.coal.mtp.dto.FormDto;
 import com.coal.mtp.dto.Item;
@@ -55,9 +56,14 @@ public class FormServiceImpl implements FormService {
 	@Autowired
 	private Mapper mapper;
 
+	@Transactional
 	public Form create(FormDto dto) {
 		Form form = mapper.map(dto, Form.class);
-		form.setCreateTime(new DateTime());
+		if (dto.getId() == null) {
+			form.setCreateTime(new DateTime());
+		} else {
+			stratumRepo.deleteStratums(dto.getId());
+		}
 		form = buildForm(form);
 		form = formRepo.save(form);
 		List<Stratum> stratums = new ArrayList<Stratum>();

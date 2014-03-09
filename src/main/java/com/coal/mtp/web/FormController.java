@@ -39,7 +39,7 @@ public class FormController {
      */
     @RequestMapping(value = "/conf", produces = "application/json")
     @ResponseBody
-    public Config getConfig(@RequestParam(value = "teamId", required = false) Long teamId) {
+    public Config getConfig(@RequestParam(value = "teamId", required = false) String teamId) {
     	Config config = configService.getConfig(teamId, true);
     	return config;
     }
