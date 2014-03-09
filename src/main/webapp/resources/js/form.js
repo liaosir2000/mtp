@@ -130,4 +130,10 @@ function Form($scope, $http) {
 			alert("ok");
 		});
 	};
+	
+	drawImg = function() {
+		alert($scope.roofs);
+	};
+	
+	$scope.$watch([$scope.roofs, $scope.tunnelFaces, $scope.points], drawImg,true);
 };
