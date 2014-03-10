@@ -1,3 +1,4 @@
+angular.module('mtp-app', ['ui.bootstrap']);
 function Shift($scope, $http) {
 	$scope.createShift = function(){
 		$http.post(".", {name:$scope.name})

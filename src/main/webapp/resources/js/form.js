@@ -1,4 +1,6 @@
-function Form($scope, $http) {
+angular.module('mtp-app', ['ui.bootstrap']);
+
+function Form($scope, $http, $modal) {
 	
 	$scope.selectSurface = function() {
 		for (index in $scope.config.surfaces) {
@@ -82,6 +84,9 @@ function Form($scope, $http) {
 			$scope.config = data;
 			//$scope.surfaceId = $scope.config.surfaces[0].id;
 			$scope.shiftId = data.shifts[0].id;
+			$scope.roofAnchor = data.infos[0].id;
+			$scope.aheadHole = data.infos[0].id;
+			$scope.tunnelInfo = data.infos[0].id;
 		});
 		loadForm(formId);
 	};
@@ -128,12 +133,37 @@ function Form($scope, $http) {
 			tunnelInfo:$scope.tunnelInfo
 		}).success(function(data, status, headers, config){
 			console.log(data);
+			reset();
+			$modal.open({
+				templateUrl:"formSaveDialog.html",
+				controller:dialogController
+			});
 		});
 	};
 	
+	reset = function() {
+		$scope.surfaceId = undefined;
+		$scope.tunnelId = undefined;
+		$scope.pointId = undefined;
+		$scope.roofs = [];
+		$scope.tunnelFaces = [];
+		$scope.floors = [];
+		$scope.pointAhead = undefined;
+		$scope.shiftId = $scope.config.shifts[0].id;
+		$scope.roofAnchor = $scope.config.infos[0].id;
+		$scope.aheadHole = $scope.config.infos[0].id;
+		$scope.tunnelInfo = $scope.config.infos[0].id;
+	}
+	
 	drawImg = function() {
-		alert($scope.roofs);
+		console.log("draw img");
 	};
 	
 	$scope.$watch([$scope.roofs, $scope.tunnelFaces, $scope.points], drawImg,true);
 };
+
+dialogController = function($scope, $modalInstance) {
+	$scope.dialogOk = function() {
+		$modalInstance.close();
+	}
+}

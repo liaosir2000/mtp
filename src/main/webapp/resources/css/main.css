@@ -1,3 +1,5 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
 #form {
 	width: 1000px;
 	border-width:1px;
@@ -34,14 +36,48 @@
 	background-color: lightgreen;
 }
 
-.stratum-8506333422426112 {
-	background-image: url(../../resources/img/stratum/1.png);
+.stratum-1 {
+	background-image: url(../../resources/img/stratum_1.png);
 }
-
-.stratum-8550812441122816 {
-	background-image: url(../../resources/img/stratum/2.png);
+.stratum-2 {
+	background-image: url(../../resources/img/stratum_2.png);
 }
-
-.stratum-8550809416505344 {
-	background-image: url(../../resources/img/stratum/3.png);
+.stratum-3 {
+	background-image: url(../../resources/img/stratum_3.png);
+}
+.stratum-4 {
+	background-image: url(../../resources/img/stratum_4.png);
+}
+.stratum-5 {
+	background-image: url(../../resources/img/stratum_5.png);
+}
+.stratum-6 {
+	background-image: url(../../resources/img/stratum_6.png);
+}
+.stratum-7 {
+	background-image: url(../../resources/img/stratum_7.png);
+}
+.stratum-8 {
+	background-image: url(../../resources/img/stratum_8.png);
+}
+.stratum-9 {
+	background-image: url(../../resources/img/stratum_9.png);
+}
+.stratum-10 {
+	background-image: url(../../resources/img/stratum_10.png);
+}
+.stratum-11 {
+	background-image: url(../../resources/img/stratum_11.png);
+}
+.stratum-12 {
+	background-image: url(../../resources/img/stratum_12.png);
+}
+.stratum-13 {
+	background-image: url(../../resources/img/stratum_13.png);
+}
+.stratum-14 {
+	background-image: url(../../resources/img/stratum_14.png);
+}
+.stratum-15 {
+	background-image: url(../../resources/img/stratum_15.png);
 }

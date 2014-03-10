@@ -1,3 +1,4 @@
+angular.module('mtp-app', ['ui.bootstrap']);
 function Info($scope, $http) {
 	$scope.createInfo = function(){
 		$http.post(".", {name:$scope.name})

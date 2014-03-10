@@ -8,7 +8,7 @@
 	request.setAttribute("path",request.getContextPath());
 %>
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="mtp-app">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
@@ -17,8 +17,8 @@
 <script src="<%=request.getContextPath()%>/resources/js/jquery-1.11.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/angular.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/js/jcanvas.min.js'></script>
-<%-- <script src="<%=request.getContextPath()%>/resources/js/function.js"></script> --%>
 	<title><t:insertAttribute name="title" /></title>
 </head>
 <body>

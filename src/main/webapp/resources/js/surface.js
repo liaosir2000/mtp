@@ -1,3 +1,4 @@
+angular.module('mtp-app', ['ui.bootstrap']);
 function Surface($scope, $http) {
 	$scope.createSurface = function(){
 		$http.post(".", {name:$scope.name})

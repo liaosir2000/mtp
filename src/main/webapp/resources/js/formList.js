@@ -1,3 +1,4 @@
+angular.module('mtp-app', ['ui.bootstrap']);
 function FormList($scope, $http) {
 	
 	loadFormList = function() {

@@ -151,4 +151,12 @@
 		</div>
 	</form>
 </div>
+<script type="text/ng-template" id="formSaveDialog.html">
+<div class="modal-body">
+	<h3 style="text-aligh:center;">您的表单已经提交成功！</h3>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="dialogOk()">确定</button>
+</div>
+</script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/form.js"></script>
