@@ -59,5 +59,18 @@ public class StratumDepth implements Serializable {
 		public void setName(String name) {
 			this.name = name;
 		}
+		@Override
+		public String toString() {
+			return "Depth [stratumId=" + stratumId + ", name=" + name
+					+ ", value=" + value + "]";
+		}
+		
 	}
+
+	@Override
+	public String toString() {
+		return "StratumDepth [roof=" + roof + ", tunnel=" + tunnel + ", floor="
+				+ floor + "]";
+	}
+	
 }

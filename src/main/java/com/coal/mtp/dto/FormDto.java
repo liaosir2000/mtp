@@ -109,4 +109,14 @@ public class FormDto implements Serializable{
 	public void setPoints(List<Item> points) {
 		this.points = points;
 	}
+	@Override
+	public String toString() {
+		return "FormDto [id=" + id + ", teamId=" + teamId + ", reporter="
+				+ reporter + ", surfaceId=" + surfaceId + ", shiftId="
+				+ shiftId + ", tunnelId=" + tunnelId + ", pointId=" + pointId
+				+ ", pointAhead=" + pointAhead + ", stratum=" + stratum
+				+ ", roofAnchor=" + roofAnchor + ", aheadHole=" + aheadHole
+				+ ", tunnelInfo=" + tunnelInfo + ", tunnels=" + tunnels
+				+ ", points=" + points + "]";
+	}
 }

@@ -3,6 +3,8 @@ package com.coal.mtp.web;
 import javax.validation.Valid;
 
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +28,7 @@ import com.coal.mtp.service.FormService;
 @Controller
 @RequestMapping(value = "/form")
 public class FormController {
+	private final Logger log = LoggerFactory.getLogger(getClass());
     @Autowired
     private ConfigService configService;
     @Autowired
@@ -52,16 +55,11 @@ public class FormController {
     }
     
     
-    @RequestMapping(value = "/save", consumes = "application/json")
-    public String save(@RequestBody @Valid FormDto dto, BindingResult result, Model model) {
-    	if (result.hasErrors()) {
-    		Config config = configService.getConfig(null, false);
-            model.addAttribute("config", config);
-            return "form-edit";
-    	} else {
-    		Form form = formService.create(dto);
-    		return "redirect:" + form.getId() + "/submit";
-    	}
+    @RequestMapping(value = "/save", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public void save(@RequestBody @Valid FormDto dto, BindingResult result, Model model) {
+    	log.info("incomming form submit:" + dto.toString());
+    	Form form = formService.create(dto);
     }
     
     @RequestMapping(value = "/listPage")

@@ -127,7 +127,7 @@ function Form($scope, $http) {
 			aheadHole:$scope.aheadHole,
 			tunnelInfo:$scope.tunnelInfo
 		}).success(function(data, status, headers, config){
-			alert("ok");
+			console.log(data);
 		});
 	};
 	
