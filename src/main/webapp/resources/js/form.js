@@ -153,17 +153,20 @@ function Form($scope, $http, $modal) {
 		$scope.roofAnchor = $scope.config.infos[0].id;
 		$scope.aheadHole = $scope.config.infos[0].id;
 		$scope.tunnelInfo = $scope.config.infos[0].id;
-	}
-	
-	drawImg = function() {
-		console.log("draw img");
 	};
 	
-	$scope.$watch([$scope.roofs, $scope.tunnelFaces, $scope.points], drawImg,true);
+	$scope.drawImg = function(layer, index) {
+		var stratum = layer[index];
+		return {
+			'background-image': 'url(../resources/img/stratum_' + stratum.stratumId +'.png)',
+			height:stratum.value + "px",
+			width:"100px"
+		};
+	};
 };
 
 dialogController = function($scope, $modalInstance) {
 	$scope.dialogOk = function() {
 		$modalInstance.close();
-	}
-}
+	};
+};

@@ -1,4 +1,4 @@
-﻿insert into stratum_conf(id, create_time, enable, name) values(1, now(), b'1', '砾岩');
+insert into stratum_conf(id, create_time, enable, name) values(1, now(), b'1', '砾岩');
 insert into stratum_conf(id, create_time, enable, name) values(2, now(), b'1', '细砂岩');
 insert into stratum_conf(id, create_time, enable, name) values(3, now(), b'1', '石英砂岩');
 insert into stratum_conf(id, create_time, enable, name) values(4, now(), b'1', '粉砂岩');

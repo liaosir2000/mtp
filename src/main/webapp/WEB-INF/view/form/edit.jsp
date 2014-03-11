@@ -9,7 +9,7 @@
 			<div id="form">
 				<div class="row">
 					<div class="header col-lg-12">
-						<select ng-model="surfaceId" required class="form-control select-middule" ng-change="selectSurface()">
+						<select ng-model="surfaceId" required class="form-control input-stratum" ng-change="selectSurface()">
 							<option ng-repeat="surface in config.surfaces" value="{{surface.id}}">{{surface.name}}</option>
 						</select>工作面地质信息卡
 					</div>
@@ -27,7 +27,7 @@
 						<tr>
 							<td>巷道名称</td>
 							<td>
-								<select ng-model="tunnelId" required class="form-control select-middule" ng-change="selectTunnel()">
+								<select ng-model="tunnelId" required class="form-control input-stratum" ng-change="selectTunnel()">
 									<option ng-repeat="tunnel in tunnels" value="{{tunnel.id}}">{{tunnel.name}}</option>
 								</select>
 							</td>
@@ -37,16 +37,36 @@
 							<td>观测点位置</td>
 							<td>
 								<div>
-									<select ng-model="pointId" class="form-control select-middule">
+									<select ng-model="pointId" class="form-control input-stratum">
 										<option ng-repeat="point in points" value="{{point.id}}">{{point.name}}</option>
 									</select>前
 									<input ng-model="pointAhead" type="number" required pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control input-short"/>
 								</div>
 							</td>
 							<td rowspan="5">
-								<canvas width="200px" height="400px">
-								
-								</canvas>
+								<div id="stratumImg">
+									<div id="roof">
+										<div ng-repeat="roof in roofs">
+											<div class="img-left">{{roof.name}}</div>
+											<div class="img" ng-style="drawImg(roofs, $index)"></div>
+											<div class="img-right">厚{{roof.value}}米</div>
+										</div>
+									</div>
+									<div id="tunnel">
+										<div ng-repeat="tunnel1 in tunnelFaces">
+											<div class="img-left">{{tunnel1.name}}</div>
+											<div class="img" ng-style="drawImg(tunnelFaces, $index)"></div>
+											<div class="img-right">厚{{tunnel1.value}}米</div>
+										</div>
+									</div>
+									<div id="floor">
+										<div ng-repeat="floor in floors">
+											<div class="img-left">{{floor.name}}</div>
+											<div class="img" ng-style="drawImg(floors, $index)"></div>
+											<div class="img-right">厚{{floor.value}}米</div>
+										</div>
+									</div>
+								</div>
 							</td>
 						</tr>
 						<tr>
@@ -58,12 +78,12 @@
 											<td>顶部</td>
 											<td id="roof">
 												<div ng-repeat="roof in roofs" class="bg-success">
-													<input type="text" value="{{roof.name}}" class="form-control input-short" readonly>厚
+													<input type="text" value="{{roof.name}}" class="form-control input-stratum" readonly>厚
 													<input type="text" value="{{roof.value}}" class="form-control input-short" readonly>米
 													<span class="glyphicon glyphicon-minus" ng-click="deleteRoofLine($index)"></span>
 												</div>
 												<div>
-													<select ng-model="roofId" class="form-control input-short">
+													<select ng-model="roofId" class="form-control input-stratum">
 														<option ng-repeat="stratum in config.stratums" value="{{stratum.id}}">{{stratum.name}}</option>
 													</select>厚
 													<input type="number" size="1" ng-model="roofValue" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control input-short"/>米
@@ -75,12 +95,12 @@
 											<td>掌子面</td>
 											<td id="tunnel">
 												<div ng-repeat="tunnel1 in tunnelFaces" class="bg-success">
-													<input type="text" value="{{tunnel1.name}}" class="form-control input-short" readonly>厚
+													<input type="text" value="{{tunnel1.name}}" class="form-control input-stratum" readonly>厚
 													<input type="text" value="{{tunnel1.value}}" class="form-control input-short" readonly>米
 													<span class="glyphicon glyphicon-minus" ng-click="deleteTunnelLine($index)"></span>
 												</div>
 												<div>
-													<select ng-model="tunnelFaceId" class="form-control input-short">
+													<select ng-model="tunnelFaceId" class="form-control input-stratum">
 														<option ng-repeat="stratum in config.stratums" value="{{stratum.id}}">{{stratum.name}}</option>
 													</select>厚
 													<input type="number" size="1" ng-model="tunnelFaceValue" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control input-short"/>米
@@ -92,12 +112,12 @@
 											<td>底部</td>
 											<td id="floor">
 												<div ng-repeat="floor in floors" class="bg-success">
-													<input type="text" value="{{floor.name}}" class="form-control input-short" readonly>厚
+													<input type="text" value="{{floor.name}}" class="form-control input-stratum" readonly>厚
 													<input type="text" value="{{floor.value}}" class="form-control input-short" readonly>米
 													<span class="glyphicon glyphicon-minus" ng-click="deleteFloorLine($index)"></span>
 												</div>
 												<div>
-													<select ng-model="floorId" class="form-control input-short">
+													<select ng-model="floorId" class="form-control input-stratum">
 														<option ng-repeat="stratum in config.stratums" value="{{stratum.id}}">{{stratum.name}}</option>
 													</select>厚
 													<input type="number" size="1" ng-model="floorValue" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control input-short"/>米
@@ -112,7 +132,7 @@
 						<tr>
 							<td>顶板锚杆及锚索施工情况</td>
 							<td>
-								<select ng-model="roofAnchor" class="form-control select-middule">
+								<select ng-model="roofAnchor" class="form-control input-stratum">
 									<option ng-repeat="info in config.infos" value="{{info.id}}">{{info.name}}</option>
 								</select>
 							</td>
@@ -120,7 +140,7 @@
 						<tr>
 							<td>超前探眼情况</td>
 							<td>
-								<select ng-model="aheadHole" class="form-control select-middule">
+								<select ng-model="aheadHole" class="form-control input-stratum">
 									<option ng-repeat="info in config.infos" value="{{info.id}}">{{info.name}}</option>
 								</select>
 							</td>
@@ -128,7 +148,7 @@
 						<tr>
 							<td>掌子面煤岩层、瓦斯、涌水有无变化</td>
 							<td>
-								<select ng-model="tunnelInfo" class="form-control select-middule">
+								<select ng-model="tunnelInfo" class="form-control input-stratum">
 									<option ng-repeat="info in config.infos" value="{{info.id}}">{{info.name}}</option>
 								</select>
 							</td>
@@ -138,7 +158,7 @@
 				<div class="row">
 					<div class="col-lg-3">
 						汇报人： 
-							<select ng-model="reporter" class="form-control select-middule">
+							<select ng-model="reporter" class="form-control input-stratum">
 								<option ng-repeat="person in config.team.mermbers" value="{{person.id}}">{{persion.name}}</option>
 							</select>
 					</div>

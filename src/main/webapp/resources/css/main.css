@@ -20,6 +20,10 @@
 	width: 90px !important;
 }
 
+.input-m {
+	width: 90px !important;
+}
+
 .innel-table {
 	margin-bottom:0px;
 }
@@ -28,56 +32,55 @@
 	cursor: pointer;
 }
 
-.select-middule {
-	width: 125px !important;
+.input-stratum {
+	width: 150px !important;
+	cursor: pointer;
+}
+
+input[readonly] {
+     cursor: pointer;
 }
 
 .selected {
 	background-color: lightgreen;
 }
 
-.stratum-1 {
-	background-image: url(../../resources/img/stratum_1.png);
+#stratumImg {
+	height: 360px;
+	width: 250px;
+	background: #eee;
 }
-.stratum-2 {
-	background-image: url(../../resources/img/stratum_2.png);
+
+.img-left {
+	width: 90px;
+	max-width: 100px;
+	display: inline-block;
+	font-size: 8px;
 }
-.stratum-3 {
-	background-image: url(../../resources/img/stratum_3.png);
+
+.img {
+	min-height:16px;
+	width: 128px;
+	display: inline-block;
 }
-.stratum-4 {
-	background-image: url(../../resources/img/stratum_4.png);
+
+.img-right {
+	display: inline-block;
+	padding-left: 4px;
+	font-size: 8px;
 }
-.stratum-5 {
-	background-image: url(../../resources/img/stratum_5.png);
+
+.line {
+	height: 1px;
+	background-color: #110000;
 }
-.stratum-6 {
-	background-image: url(../../resources/img/stratum_6.png);
+
+#roof {
+	background-color: #EEEEEE;
 }
-.stratum-7 {
-	background-image: url(../../resources/img/stratum_7.png);
+#tunnel {
+	background-color: #AAAAAA;
 }
-.stratum-8 {
-	background-image: url(../../resources/img/stratum_8.png);
-}
-.stratum-9 {
-	background-image: url(../../resources/img/stratum_9.png);
-}
-.stratum-10 {
-	background-image: url(../../resources/img/stratum_10.png);
-}
-.stratum-11 {
-	background-image: url(../../resources/img/stratum_11.png);
-}
-.stratum-12 {
-	background-image: url(../../resources/img/stratum_12.png);
-}
-.stratum-13 {
-	background-image: url(../../resources/img/stratum_13.png);
-}
-.stratum-14 {
-	background-image: url(../../resources/img/stratum_14.png);
-}
-.stratum-15 {
-	background-image: url(../../resources/img/stratum_15.png);
+#floor {
+	background-color: #777777;
 }
