@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.coal.mtp.dto.Config;
 import com.coal.mtp.dto.Item;
 import com.coal.mtp.dto.Surface;
+import com.coal.mtp.dto.Team;
 import com.coal.mtp.dto.Tunnel;
 import com.coal.mtp.entity.InfoConfig;
 import com.coal.mtp.entity.PointConfig;
@@ -69,6 +70,13 @@ public class ConfigServiceImpl implements ConfigService {
 		List<Surface> surfaces = convertSurfaces(scs, tunnels);
 		config.setSurfaces(surfaces);
 		config.setSuccess(true);
+		//TODO
+		Team team2 = new Team();
+		team2.setId(2L);
+		team2.setName("开拓队");
+		team2.addMember(new Item(31L, "张三"));
+		team2.addMember(new Item(32L, "李四"));
+		config.setTeam(team2);
 		return config;
 	}
 	

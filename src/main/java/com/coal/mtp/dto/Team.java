@@ -1,11 +1,12 @@
 package com.coal.mtp.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
 	private Long id;
 	private String name;
-	private List<Item> members;
+	private List<Item> members = new ArrayList<Item>();
 	
 	public Team() {
 		super();
@@ -34,5 +35,8 @@ public class Team {
 	}
 	public void setMembers(List<Item> members) {
 		this.members = members;
+	}
+	public void addMember(Item item) {
+		members.add(item);
 	}
 }
