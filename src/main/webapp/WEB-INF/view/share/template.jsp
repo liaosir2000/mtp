@@ -22,21 +22,13 @@
 	<title><t:insertAttribute name="title" /></title>
 </head>
 <body>
-	<nav class="navbar navbar-default" role="navigation">
+	<div class="title">
+	地质保障管理预警平台
+	</div>
+	<nav class="navbar navbar-default mtpNav" role="navigation">
 		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">地质管理</a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<!-- <li class="active"><a href="#">Link</a></li> -->
 					<li><a href="<%=request.getContextPath()%>/form/edit">填写信息卡</a></li>
 					<li><a href="<%=request.getContextPath()%>/form/listPage">信息卡列表</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">配置管理 <b class="caret"></b></a>
@@ -53,7 +45,7 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	<div id="page-body">
+	<div class="mtpBody">
 		<t:insertAttribute name="content" />
 	</div>
 </body>

@@ -1,10 +1,38 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-#form {
-	width: 1000px;
-	border-width:1px;
-	border-color: #333333;
-	background-color: #eeeeee;
+body {
+	background-color: #35424a;
+}
+.title {
+	width: 1021px;
+	max-width: 1021px;
+	margin-left: auto;
+	margin-right: auto;
+	color:#FFFFFF;
+	background-color: #2e3439;
+	font-size: 24px;
+	font-style: normal;
+	font-weight:bold;
+	padding-left:40px;
+	height: 60px;
+	line-height: 60px;
+}
+
+.mtpNav {
+	width: 1021px;
+	max-width: 1021px;
+	margin-left: auto;
+	margin-right: auto;
+	color:#FFFFFF;
+	background-color: #2e3439;
+}
+.mtpBody {
+	width: 1021px;
+	max-width: 1021px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url(../img/bodyBg.png);
+	background-repeat: no-repeat;
 }
 
 #form .header {
