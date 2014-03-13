@@ -6,7 +6,7 @@
 	<div ng-controller="Stratum" class="mtp-config">
 		<div class="mtp-config-edit">
 			<form class="form-inline" ng-submit="createStratum()">
-				<input type="text" name="name" ng-model="name" placeholder="岩层" class="form-control">
+				<input type="text" name="name" required ng-model="name" placeholder="岩层" class="form-control">
 				<input type="submit" value="新建" class="btn btn-primary">
 			</form>
 		</div>

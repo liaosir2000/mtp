@@ -1,14 +1,13 @@
 angular.module('mtp-app', ['ui.bootstrap']);
 function Surface($scope, $http) {
 	$scope.createSurface = function(){
-		$http.post(".", {name:$scope.name})
-		.success(function(data, status, headers, config){
-			loadSurface();
-		})
-		.error(function(data, status, headers, config){
-			
-		});
-		$scope.name = "";
+		if ($scope.name) {
+			$http.post(".", {name:$scope.name})
+			.success(function(data, status, headers, config){
+				loadSurface();
+			});
+			$scope.name = "";
+		}
 	};
 	
 	$scope.deleteSurface = function(index) {
@@ -31,11 +30,13 @@ function Surface($scope, $http) {
 	};
 	
 	$scope.createTunnel = function() {
-		$http.post($scope.selectSurfaceId +"/tunnel", {name:$scope.tunnelName})
-		.success(function(data, status, headers, config){
-			$scope.tunnelName = "";
-			loadTunnel();
-		});
+		if ($scope.tunnelName) {
+			$http.post($scope.selectSurfaceId +"/tunnel", {name:$scope.tunnelName})
+			.success(function(data, status, headers, config){
+				$scope.tunnelName = "";
+				loadTunnel();
+			});
+		}
 	}
 	
 	$scope.deleteTunnel = function(index) {
@@ -54,6 +55,7 @@ function Surface($scope, $http) {
 	};
 	
 	$scope.createPoint = function() {
+		if ()
 		$http.post($scope.selectSurfaceId + "/tunnel/" + $scope.selectTunnelId + "/point", 
 				{name:$scope.pointName, x:$scope.x,y:$scope.y,z:$scope.z})
 		.success(function(data, status, headers, config){

@@ -1,11 +1,13 @@
 angular.module('mtp-app', ['ui.bootstrap']);
 function Stratum($scope, $http) {
 	$scope.createStratum = function(){
-		$http.post(".", {name:$scope.name})
-		.success(function(data, status, headers, config){
-			loadStratum();
-		});
-		$scope.name = "";
+		if ($scope.name) {
+			$http.post(".", {name:$scope.name})
+			.success(function(data, status, headers, config){
+				loadStratum();
+			});
+			$scope.name = "";
+		}
 	};
 	
 	$scope.deleteStratum = function(index) {

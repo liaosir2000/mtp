@@ -8,13 +8,13 @@
 		<div class="h3">工作面</div>
 		<div>
 			<form class="form-inline" ng-submit="createSurface()">
-				<input type="text" name="name" ng-model="name" placeholder="工作面名称" class="form-control"> <input
+				<input type="text" name="name" required ng-model="name" placeholder="工作面名称" class="form-control"> <input
 					type="submit" value="新建" class="btn btn-primary">
 			</form>
 		</div>
 		<table class="table table-striped form-list">
 			<tr>
-				<th>配置项</th>
+				<th>工作面名称</th>
 				<th>操作</th>
 			</tr>
 			<tr ng-repeat="surface in surfaces">
@@ -27,13 +27,13 @@
 		<div class="h3">巷道</div>
 		<div>
 			<form class="form-inline" ng-submit="createTunnel()">
-				<input type="text" name="name" ng-model="tunnelName" placeholder="巷道名称" class="form-control"> <input
+				<input type="text" name="name" required ng-model="tunnelName" placeholder="巷道名称" class="form-control"> <input
 					type="submit" value="新建" class="btn btn-primary">
 			</form>
 		</div>
 		<table class="table table-striped form-list">
 			<tr>
-				<th>配置项</th>
+				<th>巷道名称</th>
 				<th>操作</th>
 			</tr>
 			<tr ng-repeat="tunnel in tunnels">
@@ -46,16 +46,16 @@
 		<div class="h3">观测点</div>
 		<div>
 			<form class="form-inline" ng-submit="createPoint()">
-				<input type="text" name="pointName" ng-model="pointName" placeholder="观测点名称" class="form-control"> 坐标 X=<input
-					type="number" name="x" ng-model="x" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short" placeholder="X轴">
-				Y=<input type="number" name="y" ng-model="y" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
-					class="form-control number-short" placeholder="Y轴"> Z=<input type="number" name="z" ng-model="z" pattern="[0-9]+(\.[0-9]+)?"
+				<input type="text" name="pointName" required ng-model="pointName" placeholder="观测点名称" class="form-control"> 坐标 X=<input
+					type="number" name="x" required ng-model="x" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short" placeholder="X轴">
+				Y=<input type="number" name="y" required ng-model="y" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
+					class="form-control number-short" placeholder="Y轴"> Z=<input type="number" name="z" required ng-model="z" pattern="[0-9]+(\.[0-9]+)?"
 					step="0.1" class="form-control number-short" placeholder="Z轴"> <input type="submit" value="新建" class="btn btn-primary">
 			</form>
 		</div>
 		<table class="table table-striped form-list">
 			<tr>
-				<th>配置项</th>
+				<th>观测点名称</th>
 				<th>X</th>
 				<th>Y</th>
 				<th>Z</th>
