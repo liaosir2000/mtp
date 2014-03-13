@@ -4,8 +4,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
-<div class="container" ng-controller = "FormList">
-	<table class="table table-striped">
+<div ng-controller = "FormList">
+	<table class="table table-striped form-list">
 		<thead>
 			<tr>
 				<td>工作面</td>

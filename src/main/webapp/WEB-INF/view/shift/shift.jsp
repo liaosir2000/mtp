@@ -3,15 +3,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-	<div class="container" ng-controller="Shift" >
-		<div class="h2">轮班</div>
-		<div class="row">
+	<div ng-controller="Shift" class="mtp-config">
+		<div class="mtp-config-edit">
 			<form class="form-inline" ng-submit="createShift()">
 				<input type="text" name="name" ng-model="name" placeholder="班次" class="form-control">
 				<input type="submit" value="新建" class="btn btn-primary">
 			</form>
 		</div>
-		<table class="table table-striped">
+		<table class="table table-striped form-list">
 			<tr>
 				<th>班次</th>
 				<th>操作</th>

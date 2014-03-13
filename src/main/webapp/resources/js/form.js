@@ -159,7 +159,7 @@ function Form($scope, $http, $modal) {
 		var stratum = layer[index];
 		return {
 			'background-image': 'url(../resources/img/stratum_' + stratum.stratumId +'.png)',
-			height:stratum.value + "px",
+			height:stratum.value * 10 + "px",
 			width:"100px"
 		};
 	};

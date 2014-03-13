@@ -1,15 +1,119 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-#form {
-	width: 1000px;
-	border-width:1px;
-	border-color: #333333;
-	background-color: #eeeeee;
+body {
+	background-color: #35424a;
 }
 
-#form .header {
+.mtp-all {
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mtp-all .title {
+	background-image: url(../img/title-bar-bg.png);
+	padding-left: 40px;
+	font-size: #fff;
+	font-weight: bold;
+	height: 61px;
+	line-height: 61px;
+	color: #fff;
+	margin-bottom: 0px;
+}
+
+.mtp-all .mtp-menu {
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff;
+}
+
+.mtp-all .mtp-body {
+	background-image: url(../img/body-bg.png);
+}
+
+.mtp-all .mtp-surface {
+	height: 36px;
+	line-height: 36px;
+	width: 300px;
+	padding-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mtp-all input {
+	background-color: #d3dce3;
+}
+.mtp-all select {
+	background-color: #d3dce3;
+}
+.mtp-all .mtp-shift {
+	height: 36px;
+	line-height: 36px;
+	margin-top:10px;
+	width: 300px;
+	float: right;
+}
+
+.mtp-head {
+	margin-top: 20px !important;
+	font-size: 24px !important;
+	height: 36px;
+	line-height: 36px !important;
+	margin-left: 40px !important;
+	color: #fff !important;
+}
+
+.mtp-config {
+	background-color: #dedddd;
+	min-height: 650px;
+}
+
+.mtp-config-edit{
+	height: 48px;
+	line-height: 48px;
+}
+
+.stratum-table {
+	background-image: url(../img/table-bg.png);
+}
+
+.stratum-layer {
+	vertical-align: middle;
 	text-align: center;
-	font-size: large;
+}
+
+.form-list {
+	background-image: url(../img/list-bg.png);
+}
+
+.surface-left {
+	float: left;
+}
+
+.surface-middle {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.surface-right {
+	float: right;
+}
+
+.mtp-bottom {
+	text-align: center;
+}
+
+.mtp-bottom div {
+	display: inline-block;
+}
+
+.mtp-form-submit {
+	margin-top: 10px;
+}
+
+.mtp-form-submit input{
+	width: 160px;
 }
 
 .number-short {
@@ -55,11 +159,11 @@ input[readonly] {
 	width: 90px;
 	max-width: 100px;
 	display: inline-block;
-	font-size: 8px;
+	font-size: xx-small;
 }
 
 .img {
-	min-height:16px;
+	min-height:10px;
 	width: 128px;
 	display: inline-block;
 }
@@ -67,20 +171,10 @@ input[readonly] {
 .img-right {
 	display: inline-block;
 	padding-left: 4px;
-	font-size: 8px;
+	font-size: xx-small;
 }
 
 .line {
 	height: 1px;
 	background-color: #110000;
-}
-
-#roof {
-	background-color: #EEEEEE;
-}
-#tunnel {
-	background-color: #AAAAAA;
-}
-#floor {
-	background-color: #777777;
 }
