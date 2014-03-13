@@ -2,6 +2,7 @@ package com.coal.mtp.web;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,10 @@ public class TeamController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("teamId") String teamId, @RequestParam("password") String paasword, HttpServletResponse resp) throws IOException {
+	public String login(@RequestParam("teamId") String teamId, @RequestParam("password") String paasword, 
+	        HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		if (teamService.validate(teamId, paasword)) {
-			return "redirect:../form/conf?teamId=" + teamId;
+			return "redirect:/form/conf?teamId=" + teamId;
 		} else {
 			resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "密码错误");
 			return null;
