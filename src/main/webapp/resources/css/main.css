@@ -151,27 +151,45 @@ input[readonly] {
 
 #stratumImg {
 	height: 360px;
-	width: 250px;
+	width: 300px;
 	background: #eee;
 }
 
+.img-line {
+	line-height: 1
+}
+
+#roof {
+	display: block;
+}
+
 .img-left {
-	width: 90px;
-	max-width: 100px;
+	width: 80px;
+	max-width: 80px;
 	display: inline-block;
-	font-size: xx-small;
+	font-size: 12px;
+	text-align: right;
+	float: left;
 }
 
 .img {
-	min-height:10px;
+	min-height:12px;
 	width: 128px;
 	display: inline-block;
+	float: left;
 }
 
 .img-right {
 	display: inline-block;
 	padding-left: 4px;
-	font-size: xx-small;
+	font-size: 12px;
+	float: left;
+}
+
+.sep-line {
+	margin-top: 5px;
+	padding: 5px;
+	display: block;
 }
 
 .line {

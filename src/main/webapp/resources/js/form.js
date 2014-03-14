@@ -33,6 +33,11 @@ function Form($scope, $http, $modal) {
 					break;
 				}
 			}
+			if ($scope.roofs) {
+				$scope.roofshow = true;
+			} else {
+				$scope.roofshow = false;
+			}
 		}
 	};
 	
@@ -57,6 +62,11 @@ function Form($scope, $http, $modal) {
 	
 	$scope.deleteFloorLine = function(index) {
 		$scope.floors.splice(index, 1);
+		if ($scope.floors) {
+			$scope.floorshow = true;
+		} else {
+			$scope.floorshow = false;
+		}
 	};
 	
 	$scope.addFloorLine = function() {
@@ -71,11 +81,21 @@ function Form($scope, $http, $modal) {
 					break;
 				}
 			}
+			if ($scope.floors) {
+				$scope.floorshow = true;
+			} else {
+				$scope.floorshow = false;
+			}
 		}
 	};
 	
 	$scope.deleteRoofLine = function(index) {
 		$scope.roofs.splice(index, 1);
+		if ($scope.roofs) {
+			$scope.roofshow = true;
+		} else {
+			$scope.roofshow = false;
+		}
 	};
 	
 	$scope.loadConfig = function(formId) {
@@ -87,6 +107,8 @@ function Form($scope, $http, $modal) {
 			$scope.roofAnchor = data.infos[0].id;
 			$scope.aheadHole = data.infos[0].id;
 			$scope.tunnelInfo = data.infos[0].id;
+			$scope.teamId = data.team.id;
+			$scope.teamName = data.team.name;
 		});
 		loadForm(formId);
 	};
@@ -109,6 +131,8 @@ function Form($scope, $http, $modal) {
 				$scope.roofAnchor = data.roofAnchor;
 				$scope.aheadHole = data.aheadHole;
 				$scope.tunnelInfo = data.tunnelInfo;
+				$scope.teamId = data.teamId;
+				$scope.teamName = data.teamName;
 			});
 		}
 	};
@@ -116,8 +140,10 @@ function Form($scope, $http, $modal) {
 	$scope.saveForm = function() {
 		$http.post("save", {
 			id:$scope.id,
-			teamId:"1",//$scope.config.team.id,
-			reporter:"2",//$scope.reporter,
+			teamId:$scope.teamId,
+			teamName:$scope.teamName,
+			
+			reporter:$scope.reporter,
 			surfaceId:$scope.surfaceId,
 			shiftId:$scope.shiftId,
 			tunnelId:$scope.tunnelId,
@@ -158,8 +184,18 @@ function Form($scope, $http, $modal) {
 	$scope.drawImg = function(layer, index) {
 		var stratum = layer[index];
 		return {
-			'background-image': 'url(../resources/img/stratum_' + stratum.stratumId +'.png)',
-			height:stratum.value * 10 + "px",
+			'background-image': 'url(../resources/img/' + stratum.stratumId +'.png)',
+			height:stratum.value * 12 + "px",
+			'line-height':stratum.value * 12 + "px",
+			width:"100px"
+		};
+	};
+	
+	$scope.drawHeight = function(layer, index) {
+		var stratum = layer[index];
+		return {
+			height:stratum.value * 12 + "px",
+			'line-height':stratum.value * 12 + "px",
 			width:"100px"
 		};
 	};

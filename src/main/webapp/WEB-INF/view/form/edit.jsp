@@ -38,24 +38,26 @@
 						<td rowspan="5">
 							<div id="stratumImg">
 								<div id="roof">
-									<div ng-repeat="roof in roofs">
-										<div class="img-left">{{roof.name}}</div>
+									<div ng-repeat="roof in roofs" class="img-line">
+										<div class="img-left" ng-style="drawHeight(roofs, $index)">{{roof.name}}</div>
 										<div class="img" ng-style="drawImg(roofs, $index)"></div>
-										<div class="img-right">厚{{roof.value}}米</div>
+										<div class="img-right" ng-style="drawHeight(roofs, $index)">厚{{roof.value}}米</div>
 									</div>
+									<!-- <div class="sep-line" ng-show='roofshow'>顶板</div> -->
 								</div>
 								<div id="tunnel">
-									<div ng-repeat="tunnel1 in tunnelFaces">
-										<div class="img-left">{{tunnel1.name}}</div>
+									<div ng-repeat="tunnel1 in tunnelFaces" class="img-line">
+										<div class="img-left" ng-style="drawHeight(tunnelFaces, $index)">{{tunnel1.name}}</div>
 										<div class="img" ng-style="drawImg(tunnelFaces, $index)"></div>
-										<div class="img-right">厚{{tunnel1.value}}米</div>
+										<div class="img-right" ng-style="drawHeight(tunnelFaces, $index)">厚{{tunnel1.value}}米</div>
 									</div>
 								</div>
+								<!-- <div class="sep-line" ng-show='floorshow'></div> -->
 								<div id="floor">
-									<div ng-repeat="floor in floors">
-										<div class="img-left">{{floor.name}}</div>
+									<div ng-repeat="floor in floors" class="img-line">
+										<div class="img-left" ng-style="drawHeight(floors, $index)">{{floor.name}}</div>
 										<div class="img" ng-style="drawImg(floors, $index)"></div>
-										<div class="img-right">厚{{floor.value}}米</div>
+										<div class="img-right" ng-style="drawHeight(floors, $index)">厚{{floor.value}}米</div>
 									</div>
 								</div>
 							</div>
@@ -145,6 +147,8 @@
 					</select>
 				</div>
 				<div>施工队组:{{config.team.name}}</div>
+				<input ng-model="teamName" type="hidden">
+				<input ng-model="teamId" type="hidden">
 			</div>
 			<div align="center" class="mtp-form-submit">
 				<input type="submit" value="提交" class="btn btn-primary">

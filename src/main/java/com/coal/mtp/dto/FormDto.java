@@ -25,6 +25,8 @@ public class FormDto implements Serializable{
 	private Long tunnelInfo;
 	private List<Item> tunnels;//只在编辑时起作用
 	private List<Item> points;//只在编辑时起作用
+	private String reporterName;
+	private String teamName;
 	public Long getId() {
 		return id;
 	}
@@ -108,6 +110,18 @@ public class FormDto implements Serializable{
 	}
 	public void setPoints(List<Item> points) {
 		this.points = points;
+	}
+	public String getReporterName() {
+		return reporterName;
+	}
+	public void setReporterName(String reporterName) {
+		this.reporterName = reporterName;
+	}
+	public String getTeamName() {
+		return teamName;
+	}
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
 	@Override
 	public String toString() {

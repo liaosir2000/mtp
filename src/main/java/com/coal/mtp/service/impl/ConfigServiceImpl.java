@@ -28,6 +28,7 @@ import com.coal.mtp.service.PointConfigService;
 import com.coal.mtp.service.ShiftConfigService;
 import com.coal.mtp.service.StratumConfigService;
 import com.coal.mtp.service.SurfaceConfigService;
+import com.coal.mtp.service.TeamService;
 import com.coal.mtp.service.TunnelConfigService;
 
 @Service
@@ -46,6 +47,8 @@ public class ConfigServiceImpl implements ConfigService {
 	private InfoConfigService infoService;
 	@Autowired
 	private AccessTokenService tokenService;
+	@Autowired
+	private TeamService teamService;
 	@Autowired
 	private Mapper mapper;
 
@@ -70,13 +73,8 @@ public class ConfigServiceImpl implements ConfigService {
 		List<Surface> surfaces = convertSurfaces(scs, tunnels);
 		config.setSurfaces(surfaces);
 		config.setSuccess(true);
-		//TODO
-		Team team2 = new Team();
-		team2.setId(2L);
-		team2.setName("开拓队");
-		team2.addMember(new Item(31L, "张三"));
-		team2.addMember(new Item(32L, "李四"));
-		config.setTeam(team2);
+		Team team = teamService.getTeam(teamId);
+		config.setTeam(team);
 		return config;
 	}
 	
