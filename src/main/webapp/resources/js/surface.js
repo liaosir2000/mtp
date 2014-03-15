@@ -55,7 +55,6 @@ function Surface($scope, $http) {
 	};
 	
 	$scope.createPoint = function() {
-		if ()
 		$http.post($scope.selectSurfaceId + "/tunnel/" + $scope.selectTunnelId + "/point", 
 				{name:$scope.pointName, x:$scope.x,y:$scope.y,z:$scope.z})
 		.success(function(data, status, headers, config){
