@@ -22,7 +22,7 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.addRoofLine = function() {
-		if ($scope.roofValue) {
+		if ($scope.roofValue && parseFloat($scope.roofValue) > 0) {
 			for(index in $scope.config.stratums) {
 				var stratum = $scope.config.stratums[index];
 				if (stratum.id == $scope.roofId) {
@@ -46,7 +46,7 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.addTunnelLine = function() {
-		if ($scope.tunnelFaceValue) {
+		if ($scope.tunnelFaceValue && parseFloat(tunnelFaceValue) > 0) {
 			for(index in $scope.config.stratums) {
 				var stratum = $scope.config.stratums[index];
 				if (stratum.id == $scope.tunnelFaceId) {
@@ -70,7 +70,7 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.addFloorLine = function() {
-		if ($scope.floorValue) {
+		if ($scope.floorValue && parseFloat($scope.floorValue) > 0) {
 			for(index in $scope.config.stratums) {
 				var stratum = $scope.config.stratums[index];
 				if (stratum.id == $scope.floorId) {

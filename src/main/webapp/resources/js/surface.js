@@ -66,6 +66,14 @@ function Surface($scope, $http) {
 		});
 	};
 	
+	$scope.deletePoint = function(index) {
+		$http.delete($scope.selectSurfaceId + "/tunnel/" + $scope.selectTunnelId + "/point/" +
+				$scope.points[index].id)
+		.success(function(data, status, headers, config){
+			loadPoint();
+		});
+	};
+	
 	loadSurface = function(){
 		$http.get(".")
 		.success(function(data, status, headers, config){
