@@ -188,4 +188,8 @@
 		</dependency>
 
 	</dependencies>
+	
+	<build>
+		<finalName>mtp</finalName>
+	</build>
 </project>
