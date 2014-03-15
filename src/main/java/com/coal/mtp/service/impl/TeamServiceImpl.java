@@ -57,6 +57,7 @@ public class TeamServiceImpl implements TeamService {
 		Team team = null;
 		try {
 			String users = orgUserService.findUser(orgId);
+			logger.info("team member:" + users);
 			team = mapper.readValue(users, Team.class);
 		} catch (Exception e) {
 			logger.error("failed to get team member", e);

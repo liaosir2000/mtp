@@ -46,7 +46,7 @@
 		<div class="h3">观测点</div>
 		<div>
 			<form class="form-inline" ng-submit="createPoint()">
-				<input type="text" name="pointName" required ng-model="pointName" placeholder="观测点名称" class="form-control"> 坐标 X=<input
+				<input type="text" name="pointName" required ng-model="pointName" placeholder="观测点名称" class="form-control" id="point-input"> 坐标 X=<input
 					type="number" name="x" required ng-model="x" pattern="[0-9]+(\.[0-9]+)?" step="0.1" class="form-control number-short" placeholder="X轴">
 				Y=<input type="number" name="y" required ng-model="y" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
 					class="form-control number-short" placeholder="Y轴"> Z=<input type="number" name="z" required ng-model="z" pattern="[0-9]+(\.[0-9]+)?"

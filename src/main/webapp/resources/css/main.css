@@ -89,15 +89,18 @@ body {
 
 .surface-left {
 	float: left;
+	margin-left: 10px;
 }
 
 .surface-middle {
 	display: inline-block;
+	float: left;
 	margin-left: 10px;
 }
 
 .surface-right {
-	float: right;
+	margin-left: 10px;
+	float: left;
 }
 
 .mtp-bottom {
@@ -113,7 +116,11 @@ body {
 }
 
 .mtp-form-submit input{
-	width: 160px;
+	width: 150px;
+}
+
+#point-input {
+	width: 140px;
 }
 
 .number-short {

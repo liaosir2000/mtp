@@ -109,6 +109,7 @@ function Form($scope, $http, $modal) {
 			$scope.tunnelInfo = data.infos[0].id;
 			$scope.teamId = data.team.id;
 			$scope.teamName = data.team.name;
+			$scope.reporter = data.team.members[0].id;
 		});
 		loadForm(formId);
 	};

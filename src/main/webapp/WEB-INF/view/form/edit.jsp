@@ -143,10 +143,10 @@
 			<div class="mtp-bottom">
 				<div>
 					汇报人： <select ng-model="reporter" class="form-control input-stratum">
-						<option ng-repeat="person in config.team.mermbers" value="{{person.id}}">{{persion.name}}</option>
+						<option ng-repeat="person in config.team.members" value="{{person.id}}">{{person.name}}</option>
 					</select>
-				</div>
-				<div>施工队组:{{config.team.name}}</div>
+				</div>&nbsp;&nbsp;
+				<div>施工队组：{{config.team.name}}</div>
 				<input ng-model="teamName" type="hidden">
 				<input ng-model="teamId" type="hidden">
 			</div>
