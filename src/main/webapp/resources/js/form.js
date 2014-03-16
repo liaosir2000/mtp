@@ -38,6 +38,8 @@ function Form($scope, $http, $modal) {
 			} else {
 				$scope.roofshow = false;
 			}
+		} else {
+			$scope.roofValue = "";
 		}
 	};
 	
@@ -46,7 +48,7 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.addTunnelLine = function() {
-		if ($scope.tunnelFaceValue && parseFloat(tunnelFaceValue) > 0) {
+		if ($scope.tunnelFaceValue && parseFloat($scope.tunnelFaceValue) > 0) {
 			for(index in $scope.config.stratums) {
 				var stratum = $scope.config.stratums[index];
 				if (stratum.id == $scope.tunnelFaceId) {
@@ -57,6 +59,8 @@ function Form($scope, $http, $modal) {
 					break;
 				}
 			}
+		} else {
+			$scope.tunnelFaceValue = "";
 		}
 	};
 	
@@ -86,6 +90,8 @@ function Form($scope, $http, $modal) {
 			} else {
 				$scope.floorshow = false;
 			}
+		} else {
+			$scope.floorValue = "";
 		}
 	};
 	
