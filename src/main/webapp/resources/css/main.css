@@ -1,9 +1,5 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-body {
-	background-color: #35424a;
-}
-
 .mtp-all {
 	width: 1024px;
 	margin-left: auto;
@@ -227,6 +223,6 @@ input[readonly] {
 }
 
 canvas {
-	width: 100%;
+	width: 1024px;
 	height: 600px;
 }

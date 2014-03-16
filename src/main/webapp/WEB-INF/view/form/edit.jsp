@@ -39,9 +39,9 @@
 							<div id="stratumImg">
 								<div id="roof">
 									<div ng-repeat="roof in roofs" class="img-line">
-										<span class="img-left" ng-style="drawHeight(roofs, $index)">{{roof.name}}</span>
+										<div class="img-left" ng-style="drawHeight(roofs, $index)">{{roof.name}}</div>
 										<div class="img" ng-style="drawImg(roofs, $index)"></div>
-										<span class="img-right" ng-style="drawHeight(roofs, $index)">厚{{roof.value}}米</span>
+										<div class="img-right" ng-style="drawHeight(roofs, $index)">厚{{roof.value}}米</div>
 									</div>
 									<!-- <div class="sep-line" ng-show='roofshow'>顶板</div> -->
 								</div>
