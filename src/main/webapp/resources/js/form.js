@@ -33,11 +33,11 @@ function Form($scope, $http, $modal) {
 					break;
 				}
 			}
-			if ($scope.roofs) {
-				$scope.roofshow = true;
-			} else {
-				$scope.roofshow = false;
-			}
+//			if ($scope.roofs) {
+//				$scope.roofshow = true;
+//			} else {
+//				$scope.roofshow = false;
+//			}
 		} else {
 			$scope.roofValue = "";
 		}
@@ -66,11 +66,11 @@ function Form($scope, $http, $modal) {
 	
 	$scope.deleteFloorLine = function(index) {
 		$scope.floors.splice(index, 1);
-		if ($scope.floors) {
-			$scope.floorshow = true;
-		} else {
-			$scope.floorshow = false;
-		}
+//		if ($scope.floors) {
+//			$scope.floorshow = true;
+//		} else {
+//			$scope.floorshow = false;
+//		}
 	};
 	
 	$scope.addFloorLine = function() {
@@ -85,11 +85,11 @@ function Form($scope, $http, $modal) {
 					break;
 				}
 			}
-			if ($scope.floors) {
-				$scope.floorshow = true;
-			} else {
-				$scope.floorshow = false;
-			}
+//			if ($scope.floors) {
+//				$scope.floorshow = true;
+//			} else {
+//				$scope.floorshow = false;
+//			}
 		} else {
 			$scope.floorValue = "";
 		}
@@ -97,11 +97,11 @@ function Form($scope, $http, $modal) {
 	
 	$scope.deleteRoofLine = function(index) {
 		$scope.roofs.splice(index, 1);
-		if ($scope.roofs) {
-			$scope.roofshow = true;
-		} else {
-			$scope.roofshow = false;
-		}
+//		if ($scope.roofs) {
+//			$scope.roofshow = true;
+//		} else {
+//			$scope.roofshow = false;
+//		}
 	};
 	
 	$scope.loadConfig = function(formId) {

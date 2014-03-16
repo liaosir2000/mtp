@@ -176,6 +176,7 @@ input[readonly] {
 	max-width: 80px;
 	display: inline-block;
 	font-size: 12px;
+	min-height:12px;
 	text-align: right;
 	float: left;
 }
@@ -190,6 +191,8 @@ input[readonly] {
 .img-right {
 	display: inline-block;
 	padding-left: 4px;
+	width: 80px;
+	min-height:12px;
 	font-size: 12px;
 	float: left;
 }
