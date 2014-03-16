@@ -113,9 +113,11 @@ function Form($scope, $http, $modal) {
 			$scope.roofAnchor = data.infos[0].id;
 			$scope.aheadHole = data.infos[0].id;
 			$scope.tunnelInfo = data.infos[0].id;
-			$scope.teamId = data.team.id;
-			$scope.teamName = data.team.name;
-			$scope.reporter = data.team.members[0].id;
+			if (data.team) {
+				$scope.teamId = data.team.id;
+				$scope.teamName = data.team.name;
+				$scope.reporter = data.team.members[0].id;
+			}
 		});
 		loadForm(formId);
 	};
@@ -149,7 +151,6 @@ function Form($scope, $http, $modal) {
 			id:$scope.id,
 			teamId:$scope.teamId,
 			teamName:$scope.teamName,
-			
 			reporter:$scope.reporter,
 			surfaceId:$scope.surfaceId,
 			shiftId:$scope.shiftId,

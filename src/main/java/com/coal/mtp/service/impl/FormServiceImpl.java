@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.dozer.Mapper;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.coal.mtp.dto.FormDto;
 import com.coal.mtp.dto.Item;
 import com.coal.mtp.dto.StratumDepth.Depth;
+import com.coal.mtp.email.EmailSendRequest;
+import com.coal.mtp.email.EmailSenderService;
 import com.coal.mtp.entity.Form;
+import com.coal.mtp.entity.InfoConfig;
 import com.coal.mtp.entity.PointConfig;
 import com.coal.mtp.entity.Stratum;
 import com.coal.mtp.entity.StratumConfig;
 import com.coal.mtp.entity.StratumLayer;
 import com.coal.mtp.entity.TunnelConfig;
+import com.coal.mtp.entity.Warn;
 import com.coal.mtp.repositories.FormRepository;
 import com.coal.mtp.repositories.InfoConfigRepository;
 import com.coal.mtp.repositories.PointConfigRepository;
@@ -29,6 +34,7 @@ import com.coal.mtp.repositories.StratumConfigRepository;
 import com.coal.mtp.repositories.StratumRepository;
 import com.coal.mtp.repositories.SurfaceConfigRepository;
 import com.coal.mtp.repositories.TunnelConfigRepository;
+import com.coal.mtp.repositories.WarnRepository;
 import com.coal.mtp.service.FormService;
 
 @Service
@@ -52,9 +58,15 @@ public class FormServiceImpl implements FormService {
 
 	@Autowired
 	private StratumRepository stratumRepo;
+	@Autowired
+	private WarnRepository warnRepo;
+	@Autowired
+	private EmailSenderService emailService;
 
 	@Autowired
 	private Mapper mapper;
+	@Value("${host:http://localhost:8080/mtp}")
+	private String host;
 
 	@Transactional
 	public Form create(FormDto dto) {
@@ -107,6 +119,10 @@ public class FormServiceImpl implements FormService {
 			}
 		}
 		stratumRepo.save(stratums);
+		
+		handleWarn(form, form.getRoofAnchor(), "顶板锚杆及锚索施工情况");
+		handleWarn(form, form.getAheadHole(), "超前探眼情况");
+		handleWarn(form, form.getTunnelInfo(), "掌子面煤岩层、瓦斯、涌水有无变化");
 		return form;
 	}
 
@@ -131,6 +147,29 @@ public class FormServiceImpl implements FormService {
 	public Page<Form> findAll(Pageable pageable) {
 		Page<Form> forms = formRepo.findAll(pageable);
 		return forms;
+	}
+	
+	private void handleWarn(Form form, Long infoId, String title) {
+		InfoConfig infoConfig = infoCfgRepo.findOne(infoId);
+		if (infoConfig.isWarn()) {
+			Warn warn = new Warn();
+			warn.setFormId(form.getId());
+			warn.setInfoId(infoId);
+			warn.setInfoName(infoConfig.getName());
+			warn.setPersonId(infoConfig.getPersonId());
+			warn.setPersonName(infoConfig.getPersonName());
+			warn.setPersonEmail(infoConfig.getPersionEmail());
+			warn.setCreateTime(new DateTime());
+			warn.setContent(title);
+			warnRepo.save(warn);
+			EmailSendRequest request = new EmailSendRequest();
+			request.setRecvAddress(warn.getPersonEmail());
+			request.setSubject("地址保障管理预警平台告警--" + warn.getInfoName());
+			String body = "工作面：" + form.getSurfaceName() + ", 巷道:" + form.getTunnelName() + ", 观测点:" + form.getPointName();
+			body = body + "。/n"+"详情见 " + host + "/form/" + form.getId() + "?view"; 
+			request.setBody(body);
+			emailService.send(request);
+		}
 	}
 	
 	private List<Item> getSelectTunnels(Long surfaceId) {

@@ -23,6 +23,14 @@ public class InfoConfig extends EntityId implements Serializable {
     @Column(name = "create_time")
     private DateTime createTime;
     private boolean enable;
+    private boolean warn;
+    @Column(name = "person_id")
+    private String personId;
+    @Column(name = "person_name")
+    private String personName;
+    @Column(name = "create_email")
+    private String persionEmail;
+    
 	public String getName() {
 		return name;
 	}
@@ -52,5 +60,29 @@ public class InfoConfig extends EntityId implements Serializable {
 	}
 	public void setEnable(boolean enable) {
 		this.enable = enable;
+	}
+	public boolean isWarn() {
+		return warn;
+	}
+	public void setWarn(boolean warn) {
+		this.warn = warn;
+	}
+	public String getPersonId() {
+		return personId;
+	}
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
+	public String getPersonName() {
+		return personName;
+	}
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+	public String getPersionEmail() {
+		return persionEmail;
+	}
+	public void setPersionEmail(String persionEmail) {
+		this.persionEmail = persionEmail;
 	}
 }

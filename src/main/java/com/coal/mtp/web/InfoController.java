@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.coal.mtp.dto.WarnPerson;
 import com.coal.mtp.entity.InfoConfig;
 import com.coal.mtp.service.InfoConfigService;
+import com.coal.mtp.service.TeamService;
 
 @Controller
 @RequestMapping(value = "/info")
@@ -19,6 +21,9 @@ public class InfoController {
 	
 	@Autowired
 	private InfoConfigService service;
+	
+	@Autowired
+	private TeamService teamService;
 	
 	@RequestMapping(value = "/conf")
 	public String init() {
@@ -42,5 +47,11 @@ public class InfoController {
 	public void delete(@PathVariable("id") Long id) {
 		service.delete(id);
 	}
-
+	
+	@RequestMapping(value = "/person") 
+	@ResponseBody
+	public List<WarnPerson> getWarnPerson() {
+		List<WarnPerson> list = teamService.getWarnPersons();
+		return list;
+	}
 }

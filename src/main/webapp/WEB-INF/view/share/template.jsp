@@ -30,6 +30,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="<%=request.getContextPath()%>/form/edit">填写信息卡</a></li>
 						<li><a href="<%=request.getContextPath()%>/form/listPage">信息卡列表</a></li>
+						<li><a href="<%=request.getContextPath()%>/profile">剖面图</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">配置管理 <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="<%=request.getContextPath()%>/surface/conf">工作面配置</a></li>

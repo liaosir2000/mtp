@@ -2,9 +2,12 @@ package com.coal.mtp.service.impl;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,8 +17,10 @@ import com.bill99.base.service.IOrgAndUser;
 import com.caucho.hessian.client.HessianProxyFactory;
 import com.coal.mtp.dto.Team;
 import com.coal.mtp.dto.TeamsDto;
+import com.coal.mtp.dto.WarnPerson;
 import com.coal.mtp.service.TeamService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 
 @Service
 public class TeamServiceImpl implements TeamService {
@@ -35,21 +40,6 @@ public class TeamServiceImpl implements TeamService {
 		} catch (IOException e) {
 			logger.error("failed to get team list", e);
 		}
-//		TeamsDto dto = new TeamsDto();
-//		dto.setSuccess(true);
-//		Team team1 = new Team();
-//		team1.setId(1L);
-//		team1.setName("综掘队");
-//		team1.addMember(new Item(11L, "综掘队一队"));
-//		team1.addMember(new Item(12L, "综掘队二队"));
-//		dto.addGroup(team1);
-//		
-//		Team team2 = new Team();
-//		team2.setId(2L);
-//		team2.setName("开拓队");
-//		team2.addMember(new Item(21L, "开拓队一队"));
-//		team2.addMember(new Item(22L, "开拓队二队"));
-//		dto.addGroup(team2);
 		return teamsDto;
 	}
 	
@@ -58,7 +48,9 @@ public class TeamServiceImpl implements TeamService {
 		try {
 			String users = orgUserService.findUser(orgId);
 			logger.info("team member:" + users);
-			team = mapper.readValue(users, Team.class);
+			if (StringUtils.isNotBlank(users)) {
+			    team = mapper.readValue(users, Team.class);
+			}
 		} catch (Exception e) {
 			logger.error("failed to get team member", e);
 		}
@@ -76,7 +68,26 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	public boolean validate(String teamId, String paasword) {
-		return true;
+		boolean valid = false;
+		try {
+			valid = orgUserService.validate(teamId, paasword);
+		} catch (Exception e) {
+			logger.error("failed to validate team password", e);
+		}
+		return valid;
+	}
+	
+	public List<WarnPerson> getWarnPersons() {
+		List<WarnPerson> ps = new ArrayList<WarnPerson>();
+		String json = orgUserService.findUserList();
+		logger.info("warn person list:{}", json);
+		CollectionType type = mapper.getTypeFactory().constructCollectionType(List.class, WarnPerson.class);
+		try {
+			ps = mapper.readValue(json, type);
+		} catch (Exception e) {
+			logger.error("failed to get warn person list", e);
+		}
+		return ps;
 	}
 
 }
