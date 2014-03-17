@@ -22,6 +22,11 @@ public class TeamController {
 	@Autowired
 	private TeamService teamService;
 	
+	@RequestMapping(value = "/init")
+	public String init() {
+	    return "team-init";
+	}
+	
 	@RequestMapping(produces = "application/json") 
 	@ResponseBody
 	public TeamsDto getTeams() {

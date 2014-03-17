@@ -18,7 +18,6 @@
 <script src="<%=request.getContextPath()%>/resources/js/angular.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 <script src="<%=request.getContextPath()%>/resources/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
-<script src='<%=request.getContextPath()%>/resources/js/jcanvas.min.js'></script>
 <title><t:insertAttribute name="title" /></title>
 </head>
 <body>

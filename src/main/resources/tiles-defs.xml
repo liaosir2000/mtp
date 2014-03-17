@@ -38,4 +38,8 @@
 		<put-attribute name="title" value="剖面图" cascade="true"/>
 		<put-attribute name="content" value="/WEB-INF/view/profile/profile.jsp" />
 	</definition>
+	<definition name="team-init" extends="template">
+		<put-attribute name="title" value="请选择队组" cascade="true"/>
+		<put-attribute name="content" value="/WEB-INF/view/team/init.jsp" />
+	</definition>
 </tiles-definitions>
