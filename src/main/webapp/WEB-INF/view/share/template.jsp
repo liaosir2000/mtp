@@ -22,7 +22,6 @@
 </head>
 <body>
 	<div class="mtp-all">
-	<!-- 
 		<h2 class="title">地址保障管理预警平台</h2>
 		<div class="masthead mtp-menu">
 			<div class="container-fluid">
@@ -42,7 +41,6 @@
 				</div>
 			</div>
 		</div>
-		 -->
 		<div>
 			<t:insertAttribute name="content" />
 		</div>

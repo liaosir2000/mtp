@@ -22,50 +22,71 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.addRoofLine = function() {
-		if ($scope.roofValue && parseFloat($scope.roofValue) > 0) {
-			for(index in $scope.config.stratums) {
-				var stratum = $scope.config.stratums[index];
-				if (stratum.id == $scope.roofId) {
-					$scope.roofs = $scope.roofs||[];
-					$scope.roofs.unshift({stratumId:stratum.id, name:stratum.name, value: $scope.roofValue});
-					$scope.roofId = "";
-					$scope.roofValue = "";
-					break;
-				}
-			}
+		if ($scope.editRoofValue && parseFloat($scope.editRoofValue) > 0) {
+			$scope.selectRoofs = $scope.selectRoofs || [];
+			$scope.selectRoofs.unshift({id:$scope.editRoofId, value:$scope.editRoofValue});
+			$scope.editRoofId = "";
+			$scope.editRoofValue = "";
+			
 //			if ($scope.roofs) {
 //				$scope.roofshow = true;
 //			} else {
 //				$scope.roofshow = false;
 //			}
 		} else {
-			$scope.roofValue = "";
+			$scope.editRoofValue = "";
+		}
+	};
+	
+	$scope.deleteRoofLine = function(index) {
+		$scope.selectRoofIds.splice(index, 1);
+		$scope.selectRoofValues.splice(index, 1);
+//		if ($scope.roofs) {
+//			$scope.roofshow = true;
+//		} else {
+//			$scope.roofshow = false;
+//		}
+	};
+	
+	$scope.addTunnelLine = function() {
+		if ($scope.editTunnelValue && parseFloat($scope.editTunnelValue) > 0) {
+			$scope.selectTunnelIds = $scope.selectTunnelIds || [];
+			$scope.selectTunnelIds.unshift($scope.editTunnelId);
+			$scope.selectTunnelValues = $scope.selectTunnelValues || [];
+			$scope.selectTunnelValues.unshift($scope.editTunnelValue);
+			$scope.editTunnelId = "";
+			$scope.editTunnelValue = "";
+		} else {
+			$scope.editTunnelValue = "";
 		}
 	};
 	
 	$scope.deleteTunnelLine = function(index) {
-		$scope.tunnelFaces.splice(index, 1);
+		$scope.selectTunnelIds.splice(index, 1);
+		$scope.selectTunnelValues.splice(index, 1);
 	};
 	
-	$scope.addTunnelLine = function() {
-		if ($scope.tunnelFaceValue && parseFloat($scope.tunnelFaceValue) > 0) {
-			for(index in $scope.config.stratums) {
-				var stratum = $scope.config.stratums[index];
-				if (stratum.id == $scope.tunnelFaceId) {
-					$scope.tunnelFaces = $scope.tunnelFaces||[];
-					$scope.tunnelFaces.unshift({stratumId:stratum.id, name:stratum.name, value: $scope.tunnelFaceValue});
-					$scope.tunnelFaceId = "";
-					$scope.tunnelFaceValue = "";
-					break;
-				}
-			}
+	$scope.addFloorLine = function() {
+		if ($scope.editFloorValue && parseFloat($scope.editFloorValue) > 0) {
+			$scope.selectFloorIds = $scope.selectFloorIds || [];
+			$scope.selectFloorIds.unshift($scope.editFloorId);
+			$scope.selectFloorValues = $scope.selectFloorValues || [];
+			$scope.selectFloorValues.unshift($scope.editFloorValue);
+			$scope.editFloorId = "";
+			$scope.editFloorValue = "";
+//			if ($scope.floors) {
+//				$scope.floorshow = true;
+//			} else {
+//				$scope.floorshow = false;
+//			}
 		} else {
-			$scope.tunnelFaceValue = "";
+			$scope.editFloorValue = "";
 		}
 	};
 	
 	$scope.deleteFloorLine = function(index) {
-		$scope.floors.splice(index, 1);
+		$scope.selectFloorIds.splice(index, 1);
+		$scope.selectFloorValues.splice(index, 1);
 //		if ($scope.floors) {
 //			$scope.floorshow = true;
 //		} else {
@@ -73,36 +94,7 @@ function Form($scope, $http, $modal) {
 //		}
 	};
 	
-	$scope.addFloorLine = function() {
-		if ($scope.floorValue && parseFloat($scope.floorValue) > 0) {
-			for(index in $scope.config.stratums) {
-				var stratum = $scope.config.stratums[index];
-				if (stratum.id == $scope.floorId) {
-					$scope.floors = $scope.floors||[];
-					$scope.floors.push({stratumId:stratum.id, name:stratum.name, value: $scope.floorValue});
-					$scope.floorId = "";
-					$scope.floorValue = "";
-					break;
-				}
-			}
-//			if ($scope.floors) {
-//				$scope.floorshow = true;
-//			} else {
-//				$scope.floorshow = false;
-//			}
-		} else {
-			$scope.floorValue = "";
-		}
-	};
-	
-	$scope.deleteRoofLine = function(index) {
-		$scope.roofs.splice(index, 1);
-//		if ($scope.roofs) {
-//			$scope.roofshow = true;
-//		} else {
-//			$scope.roofshow = false;
-//		}
-	};
+
 	
 	$scope.loadConfig = function(formId) {
 		$http.get("conf")

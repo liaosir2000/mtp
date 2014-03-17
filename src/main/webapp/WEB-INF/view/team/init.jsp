@@ -5,9 +5,9 @@
 
 	<div ng-controller="Team" ng-init="loadTeam()">
 		<div ng-repeat = "team in teams">
-			<div ng-repeat = "member in team.members">
-				<span data-id={{member.id}}>{{member.name}}</span>
-			</div>
+			<a ng-repeat = "member in team.members" ng-click="loginWith(member.id)" class="btn btn-primary">
+				{{member.name}}
+			</a>
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/team.js"></script>
