@@ -210,6 +210,15 @@ function Form($scope, $http, $modal) {
 		}
 	});
 	
+	//绘图
+	var draw = function(newValue, oldValue, scope) {
+		console.log("drawing");
+	};
+	
+	$scope.$watchCollection("selectRoofs", draw);
+	$scope.$watchCollection("selectTunnels", draw);
+	$scope.$watchCollection("selectFloors", draw);
+	$scope.$watch("[editRoofId, editRoofValue, editTunnelId, editTunnelValue, editFloorId, editFloorValue]", draw, true);
 };
 
 dialogController = function($scope, $modalInstance) {
