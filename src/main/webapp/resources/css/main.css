@@ -155,10 +155,9 @@ input[readonly] {
 }
 
 #stratumImg {
-	height: 360px;
-	width: 300px;
+	height: 500px;
+	width: 330px;
 	background-image: url(../img/table-bg.png);
-	
 }
 
 .img-line {
@@ -224,7 +223,33 @@ input[readonly] {
 	margin-left: 10px;
 }
 
-canvas {
-	width: 1024px;
-	height: 600px;
+.team-list {
+	width: 120px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.team-login {
+	background-image: url(../img/login.png);
+	min-height: 740px;
+}
+
+.team-list {
+	
+}
+
+.team-border {
+	padding-top: 140px;
+}
+.team-header {
+	font-size: 24px;
+	font-weight: bold;
+}
+.loginDialog {
+	background-image: url(../img/table-bg.png);
+}
+.pwd {
+	padding-left: 100px;
+	padding-right: 20px;
+	font-weight: bold;
 }

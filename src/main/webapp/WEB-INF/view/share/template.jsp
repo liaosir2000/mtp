@@ -28,6 +28,7 @@
 			<div class="container-fluid">
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
+						<li><a href="<%=request.getContextPath()%>/team/init">队组登陆</a></li>
 						<li><a href="<%=request.getContextPath()%>/form/edit">填写信息卡</a></li>
 						<li><a href="<%=request.getContextPath()%>/form/listPage">信息卡列表</a></li>
 						<li><a href="<%=request.getContextPath()%>/profile">剖面图</a></li>
