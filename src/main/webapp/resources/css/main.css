@@ -72,10 +72,12 @@
 
 .stratum-table {
 	background-image: url(../img/table-bg.png);
+	border: 0px !important;
 }
 
+
 .stratum-layer {
-	vertical-align: middle;
+	vertical-align: middle !important;
 	text-align: center;
 }
 

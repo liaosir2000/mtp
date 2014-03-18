@@ -2,25 +2,6 @@ angular.module('mtp-app', ['ui.bootstrap']);
 
 function Form($scope, $http, $modal) {
 	
-	$scope.selectSurface = function() {
-		for (index in $scope.config.surfaces) {
-			var surface = $scope.config.surfaces[index];
-			if (surface.id == $scope.surfaceId) {
-				$scope.tunnels = surface.tunnels;
-				break;
-			}
-		}
-	};
-	
-	$scope.selectTunnel = function() {
-		for (index in $scope.tunnels) {
-			if ($scope.tunnels[index].id == $scope.tunnelId) {
-				$scope.points = $scope.tunnels[index].points;
-				break;
-			}
-		}
-	};
-	
 	$scope.addRoofLine = function() {
 		if ($scope.editRoofValue && parseFloat($scope.editRoofValue) > 0) {
 			$scope.selectRoofs = $scope.selectRoofs || [];
@@ -39,8 +20,7 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.deleteRoofLine = function(index) {
-		$scope.selectRoofIds.splice(index, 1);
-		$scope.selectRoofValues.splice(index, 1);
+		$scope.selectRoofs.splice(index, 1);
 //		if ($scope.roofs) {
 //			$scope.roofshow = true;
 //		} else {
@@ -50,10 +30,8 @@ function Form($scope, $http, $modal) {
 	
 	$scope.addTunnelLine = function() {
 		if ($scope.editTunnelValue && parseFloat($scope.editTunnelValue) > 0) {
-			$scope.selectTunnelIds = $scope.selectTunnelIds || [];
-			$scope.selectTunnelIds.unshift($scope.editTunnelId);
-			$scope.selectTunnelValues = $scope.selectTunnelValues || [];
-			$scope.selectTunnelValues.unshift($scope.editTunnelValue);
+			$scope.selectTunnels = $scope.selectTunnels || [];
+			$scope.selectTunnels.unshift({id:$scope.editTunnelId, value:$scope.editTunnelValue});
 			$scope.editTunnelId = "";
 			$scope.editTunnelValue = "";
 		} else {
@@ -62,16 +40,13 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.deleteTunnelLine = function(index) {
-		$scope.selectTunnelIds.splice(index, 1);
-		$scope.selectTunnelValues.splice(index, 1);
+		$scope.selectTunnels.splice(index, 1);
 	};
 	
 	$scope.addFloorLine = function() {
 		if ($scope.editFloorValue && parseFloat($scope.editFloorValue) > 0) {
-			$scope.selectFloorIds = $scope.selectFloorIds || [];
-			$scope.selectFloorIds.unshift($scope.editFloorId);
-			$scope.selectFloorValues = $scope.selectFloorValues || [];
-			$scope.selectFloorValues.unshift($scope.editFloorValue);
+			$scope.selectFloors = $scope.selectFloors || [];
+			$scope.selectFloors.unshift({id:$scope.editFloorId, value:$scope.editFloorValue});
 			$scope.editFloorId = "";
 			$scope.editFloorValue = "";
 //			if ($scope.floors) {
@@ -85,8 +60,7 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.deleteFloorLine = function(index) {
-		$scope.selectFloorIds.splice(index, 1);
-		$scope.selectFloorValues.splice(index, 1);
+		$scope.selectFloors.splice(index, 1);
 //		if ($scope.floors) {
 //			$scope.floorshow = true;
 //		} else {
@@ -100,7 +74,7 @@ function Form($scope, $http, $modal) {
 		$http.get("conf")
 		.success(function(data, status, headers, config){
 			$scope.config = data;
-			//$scope.surfaceId = $scope.config.surfaces[0].id;
+			$scope.surfaceId = $scope.config.surfaces[0].id;
 			$scope.shiftId = data.shifts[0].id;
 			$scope.roofAnchor = data.infos[0].id;
 			$scope.aheadHole = data.infos[0].id;
@@ -113,6 +87,7 @@ function Form($scope, $http, $modal) {
 		});
 		loadForm(formId);
 	};
+
 	
 	loadForm = function(formId) {
 		if (formId) {
@@ -139,6 +114,19 @@ function Form($scope, $http, $modal) {
 	};
 	
 	$scope.saveForm = function() {
+		if (!$scope.surfaceId) {
+			$scope.surfaceId_invalid = true;
+			return false;
+		}
+		if (!$scope.tunnelId) {
+			$scope.tunnelId_invalid = true;
+			return false;
+		}
+		if (!$scope.pointId) {
+			$scope.pointId_invalid = true;
+			return false;
+		}
+		
 		$http.post("save", {
 			id:$scope.id,
 			teamId:$scope.teamId,
@@ -199,6 +187,29 @@ function Form($scope, $http, $modal) {
 			width:"100px"
 		};
 	};
+	
+	$scope.$watch("surfaceId", function() {
+		if (!$scope.config) {
+			return false;
+		}
+		for (index in $scope.config.surfaces) {
+			var surface = $scope.config.surfaces[index];
+			if (surface.id == $scope.surfaceId) {
+				$scope.tunnels = surface.tunnels;
+				break;
+			}
+		}
+	});
+	
+	$scope.$watch("tunnelId", function() {
+		for (index in $scope.tunnels) {
+			if ($scope.tunnels[index].id == $scope.tunnelId) {
+				$scope.points = $scope.tunnels[index].points;
+				break;
+			}
+		}
+	});
+	
 };
 
 dialogController = function($scope, $modalInstance) {
