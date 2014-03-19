@@ -49,7 +49,6 @@ public class FormController {
     
     @RequestMapping(value = "/edit")
     public String edit(@RequestParam(value = "teamId", required = false) Long teamId, Model model) {
-    	//Config config = configService.getConfig(teamId, false);
     	model.addAttribute("serverTime", new DateTime());
     	return "form-edit";
     }

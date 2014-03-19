@@ -13,6 +13,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/base.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 <script src="<%=request.getContextPath()%>/resources/js/jquery-1.11.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/angular.min.js"></script>
