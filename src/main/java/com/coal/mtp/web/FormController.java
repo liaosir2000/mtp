@@ -50,6 +50,7 @@ public class FormController {
     @RequestMapping(value = "/edit")
     public String edit(@RequestParam(value = "teamId", required = false) Long teamId, Model model) {
     	model.addAttribute("serverTime", new DateTime());
+    	model.addAttribute("teamId", teamId);
     	return "form-edit";
     }
     

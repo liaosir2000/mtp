@@ -1,37 +1,54 @@
-angular.module('mtp-app', [ 'ui.bootstrap' ]);
-function Team($scope, $http, $modal) {
-	$scope.loadTeam = function() {
-		$http.get(".").success(function(data, status, headers, config) {
-			$scope.teams = data.groups;
-		});
-	};
+var dialogApp = angular.module('mtp-app', []);
+dialogApp.factory('jqueryUI', function($window, $templateCache, $document, $compile) {
+    return {
+        wrapper : function(cssSelector, pluginName, options, templateName, dialogScope) {
+            if (templateName) {
+                var templateDom = $($templateCache.get(templateName));
+                $document.append(templateDom);
+                $compile(templateDom)(dialogScope);
+            }
+            $(cssSelector)[pluginName](options);
+        },
 
-	$scope.loginWith = function(teamId) {
-		var modalInstance = $modal.open({
-			templateUrl : "loginDialog.html",
-			controller : loginController,
-			scope:$scope
-		});
+        performAction : function(cssSelector, pluginName, action, options) {
+            if (options) {
+                $(cssSelector)[pluginName](action, options);
+            } else {
+                $(cssSelector)[pluginName](action);
+            }
 
-		modalInstance.result.then(function() {
-			console.log("hear");
-		}, function() {
-			console.info('Modal dismissed at: ' + new Date());
-		});
-	};
-};
+        }
+    };
+});
 
-loginController = function($scope, $modalInstance) {
-	$scope.dialogOk = function() {
-		console.log($modalInstance.pwd);
-		$modalInstance.close();
-	};
+function Team($scope, $http, jqueryUI) {
+    $scope.loadTeam = function() {
+        $http.get(".").success(function(data, status, headers, config) {
+            $scope.teams = data.groups;
+        });
+    };
 
-	$scope.cancel = function() {
-		$modalInstance.dismiss('取消');
-	};
-	
-	$scope.pwdInput = function() {
-		console.log($scope.pwd);
-	};
+    $scope.loginWith = function(teamId) {
+        $scope.teamId = teamId;
+        var options = {
+            modal : true,
+            buttons : {
+                "登陆" : function() {
+                    console.log("login team=" + $scope.teamId);
+                    $(this).dialog("close");
+                    $http.post("plogin", {
+                        teamId : $scope.teamId,
+                        password : $scope.pwd
+                    }).success(function(data, status, headers, config) {
+                        $scope.pwd = "";
+                        window.location.href = "/mtp/form/edit?teamId=" + $scope.teamId;
+                    }).error(function(data, status, headers, config) {
+                        $scope.pwd = undefined;
+                        $scope.message = "登陆失败，请确认输入正确的密码";
+                    });
+                }
+            }
+        };
+        jqueryUI.wrapper('#dialogInHtml', 'dialog', options);
+    };
 };
