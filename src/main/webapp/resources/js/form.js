@@ -29,7 +29,7 @@ function Form($scope, $http, $modal) {
 	$scope.addTunnelLine = function() {
 		if ($scope.editTunnelValue && parseFloat($scope.editTunnelValue) > 0) {
 			$scope.selectTunnels = $scope.selectTunnels || [];
-			$scope.selectTunnels.push({id:$scope.editTunnelId, value:$scope.editTunnelValue});
+			$scope.selectTunnels.unshift({id:$scope.editTunnelId, value:$scope.editTunnelValue});
 			$scope.editTunnelId = "";
 			$scope.editTunnelValue = "";
 		} else {
@@ -44,7 +44,7 @@ function Form($scope, $http, $modal) {
 	$scope.addFloorLine = function() {
 		if ($scope.editFloorValue && parseFloat($scope.editFloorValue) > 0) {
 			$scope.selectFloors = $scope.selectFloors || [];
-			$scope.selectFloors.unshift({id:$scope.editFloorId, value:$scope.editFloorValue});
+			$scope.selectFloors.push({id:$scope.editFloorId, value:$scope.editFloorValue});
 			$scope.editFloorId = "";
 			$scope.editFloorValue = "";
 		} else {
@@ -180,6 +180,11 @@ function Form($scope, $http, $modal) {
 	//绘图
 	var draw = function(newValue, oldValue, scope) {
 		var json = [];
+		if ($scope.editRoofId && $scope.editRoofValue) {
+			json.unshift({id:0, position:"顶板", thickness:$scope.editRoofValue,
+				bgimg:"../resources/img/" + $scope.editRoofId +".png",
+				name:getStratumName($scope.editRoofId)});
+		}
 		for(var i in $scope.selectRoofs) {
 			if ($scope.selectRoofs[i].id && $scope.selectRoofs[i].value) {
 				json.unshift({id:i, position:"顶板", thickness:$scope.selectRoofs[i].value,
@@ -187,10 +192,10 @@ function Form($scope, $http, $modal) {
 					name:getStratumName($scope.selectRoofs[i].id)});
 			}
 		}
-		if ($scope.editRoofId && $scope.editRoofValue) {
-			json.unshift({id:0, position:"顶板", thickness:$scope.editRoofValue,
-				bgimg:"../resources/img/" + $scope.editRoofId +".png",
-				name:getStratumName($scope.editRoofId)});
+		if ($scope.editTunnelId && $scope.editTunnelValue) {
+			json.unshift({id:0, position:"掌子面", thickness:$scope.editTunnelValue,
+				bgimg:"../resources/img/" + $scope.editTunnelId +".png",
+				name:getStratumName($scope.editTunnelId)});
 		}
 		for(var i in $scope.selectTunnels) {
 			if ($scope.selectTunnels[i].id && $scope.selectTunnels[i].value) {
@@ -199,20 +204,15 @@ function Form($scope, $http, $modal) {
 					name:getStratumName($scope.selectTunnels[i].id)});
 			}
 		}
-		if ($scope.editTunnelId && $scope.editTunnelValue) {
-			json.unshift({id:0, position:"掌子面", thickness:$scope.editTunnelValue,
-				bgimg:"../resources/img/" + $scope.editTunnelId +".png",
-				name:getStratumName($scope.editTunnelId)});
-		}
 		for(var i in $scope.selectFloors) {
 			if ($scope.selectFloors[i].id && $scope.selectFloors[i].value) {
-				json.unshift({id:i, position:"底板", thickness:$scope.selectFloors[i].value,
+				json.push({id:i, position:"底板", thickness:$scope.selectFloors[i].value,
 					bgimg:"../resources/img/" + $scope.selectFloors[i].id +".png",
 					name:getStratumName($scope.selectFloors[i].id)});
 			}
 		}
 		if ($scope.editFloorId && $scope.editFloorValue) {
-			json.unshift({id:0, position:"底板", thickness:$scope.editFloorValue,
+			json.push({id:0, position:"底板", thickness:$scope.editFloorValue,
 				bgimg:"../resources/img/" + $scope.editFloorId +".png",
 				name:getStratumName($scope.editFloorId)});
 		}
