@@ -220,7 +220,6 @@ input[readonly] {
 	height: 32px;
 	line-height: 32px;
 	float: inherit;
-	margin-left: 10px;
 }
 
 .team-list {
