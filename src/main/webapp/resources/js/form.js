@@ -11,6 +11,10 @@ function Form($scope, $http, $modal) {
 		return "";
 	};
 	
+	$scope.validateNum = function($event) {
+	    console.log($event);
+	};
+	
 	$scope.addRoofLine = function() {
 		if ($scope.editRoofValue && parseFloat($scope.editRoofValue) > 0) {
 			$scope.selectRoofs = $scope.selectRoofs || [];
@@ -56,8 +60,8 @@ function Form($scope, $http, $modal) {
 		$scope.selectFloors.splice(index, 1);
 	};
 	
-	$scope.loadConfig = function(formId) {
-		$http.get("conf")
+	$scope.loadConfig = function(teamId, formId) {
+		$http.get("conf?teamId=" + teamId)
 		.success(function(data, status, headers, config){
 			$scope.config = data;
 			$scope.surfaceId = $scope.config.surfaces[0].id;
@@ -87,9 +91,9 @@ function Form($scope, $http, $modal) {
 				$scope.tunnelId = data.tunnelId;
 				$scope.pointId = data.pointId;
 				$scope.pointAhead = data.pointAhead;
-				$scope.roofs = data.stratum.roof;
-				$scope.tunnelFaces = data.stratum.tunnel;
-				$scope.floors = data.stratum.floor;
+				$scope.selectRoofs = data.stratum.roof;
+				$scope.selectTunnels = data.stratum.tunnel;
+				$scope.selectFloors = data.stratum.floor;
 				$scope.roofAnchor = data.roofAnchor;
 				$scope.aheadHole = data.aheadHole;
 				$scope.tunnelInfo = data.tunnelInfo;
@@ -145,9 +149,15 @@ function Form($scope, $http, $modal) {
 		$scope.surfaceId = undefined;
 		$scope.tunnelId = undefined;
 		$scope.pointId = undefined;
-		$scope.roofs = [];
-		$scope.tunnelFaces = [];
-		$scope.floors = [];
+		$scope.selectRoofs = [];
+		$scope.selectTunnels = [];
+		$scope.selectFloors = [];
+		$scope.editRoofId = undefined;
+		$scope.editRoofValue = undefined;
+		$scope.editTunnelId = undefined;
+		$scope.editTunnelValue = undefined;
+		$scope.editFloorId = undefined;
+		$scope.editFloorValue = undefined;
 		$scope.pointAhead = undefined;
 		$scope.shiftId = $scope.config.shifts[0].id;
 		$scope.roofAnchor = $scope.config.infos[0].id;

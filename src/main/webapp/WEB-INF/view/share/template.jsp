@@ -15,7 +15,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/base.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+<link type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery-ui.min.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/resources/js/jquery-1.11.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-ui.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/angular.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">

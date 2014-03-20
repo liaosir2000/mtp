@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
-<div class="mtp-body" ng-controller="Form" ng-init="loadConfig(${id})">
+<div class="mtp-body" ng-controller="Form" ng-init="loadConfig(${teamId}, ${id} + '')">
 	<form class="form-inline" role="form" ng-submit="saveForm()" name="myForm">
 		<div id="form">
 			<div class="mtp-surface">
@@ -52,6 +52,14 @@
 									<tr>
 										<td class="stratum-layer">顶部</td>
 										<td>
+											<div>
+												<span class="glyphicon glyphicon-plus" ng-click="addRoofLine()"></span> 
+												<select ng-model="editRoofId" class="form-control input-stratum"
+													ng-options="stratum.id as stratum.name for stratum in config.stratums">
+												</select>厚
+												<input type="number" size="1" ng-model="editRoofValue" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
+													class="form-control input-short"/>米
+											</div>
 											<div ng-repeat="selectRoof in selectRoofs">
 												<span class="glyphicon glyphicon-minus" ng-click="deleteRoofLine($index)"></span> 
 												<select ng-model="selectRoofs[$index].id" required class="form-control input-stratum"
@@ -61,28 +69,11 @@
 												<input type="number" size="1" required ng-model="selectRoofs[$index].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
 													class="form-control input-short" />米
 											</div>
-											<div>
-												<span class="glyphicon glyphicon-plus" ng-click="addRoofLine()"></span> 
-												<select ng-model="editRoofId" class="form-control input-stratum"
-													ng-options="stratum.id as stratum.name for stratum in config.stratums">
-												</select>厚
-												<input type="number" size="1" ng-model="editRoofValue" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
-													class="form-control input-short" />米
-											</div>
 										</td>
 									</tr>
 									<tr>
 										<td class="stratum-layer">掌子面</td>
 										<td>
-											<div ng-repeat="selectTunnel in selectTunnels">
-												<span class="glyphicon glyphicon-minus" ng-click="deleteTunnelLine($index)"></span> 
-												<select ng-model="selectTunnels[$index].id" required class="form-control input-stratum"
-													ng-options="stratum.id as stratum.name for stratum in config.stratums">
-													<option value=""></option>
-												</select>厚 
-												<input type="number" size="1" required ng-model="selectTunnels[$index].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
-													class="form-control input-short" />米
-											</div>
 											<div>
 												<span class="glyphicon glyphicon-plus" ng-click="addTunnelLine()"></span> 
 												<select ng-model="editTunnelId" class="form-control input-stratum"
@@ -91,6 +82,15 @@
 												<input type="number" size="1"  ng-model="editTunnelValue" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
 													class="form-control input-short" />米
 											</div>
+											<div ng-repeat="selectTunnel in selectTunnels">
+												<span class="glyphicon glyphicon-minus" ng-click="deleteTunnelLine($index)"></span> 
+												<select ng-model="selectTunnels[$index].id" required class="form-control input-stratum"
+													ng-options="stratum.id as stratum.name for stratum in config.stratums">
+													<option value=""></option>
+												</select>厚 
+												<input type="number" size="1" required ng-model="selectTunnels[$index].value" pattern="[0-9]+(\.[0-9]+)?" step="0.1"
+													class="form-control input-short" />米
+											</div>											
 										</td>
 									</tr>
 									<tr>

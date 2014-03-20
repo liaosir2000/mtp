@@ -49,7 +49,9 @@ public class FormController {
     
     @RequestMapping(value = "/edit")
     public String edit(@RequestParam(value = "teamId", required = false) Long teamId, Model model) {
-    	model.addAttribute("serverTime", new DateTime());
+    	//model.addAttribute("serverTime", new DateTime());
+    	model.addAttribute("teamId", teamId);
+    	model.addAttribute("id", "");
     	return "form-edit";
     }
     
@@ -74,7 +76,8 @@ public class FormController {
     }
     
     @RequestMapping(value = "/{formId}", params= "view")
-    public String view(@PathVariable("formId") Long formId, Model model) {
+    public String view(@PathVariable("formId") Long formId, @RequestParam("teamId") String teamId, Model model) {
+        model.addAttribute("teamId", teamId);
     	model.addAttribute("id", formId);
         return "form-edit";
     }

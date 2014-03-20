@@ -13,16 +13,10 @@
 		</div>
 		</span>
 	</div>
-	<script type="text/ng-template" id="loginDialog.html">
-<div ng-contoller="loginController" class="loginDialog">
-<div class="modal-body" id="modal-body">
-	<span class="pwd">口令</span><input type="password" ng-model="pwd" ng-change="pwdInput()">
-</div>
-<div class="modal-footer" id="modal-footer">
-	<button class="btn btn-primary" ng-click="dialogOk()">登陆</button>
-	<button class="btn btn-primary" ng-click="cancel()">取消</button>
-</div>
-</div>
-	</script>
-
+	<div id="dialogInHtml" title="请输入队组密码" class="ui-helper-hidden">
+		{{message}}
+        <input type="password" ng-model="pwd" class="form-control"/>
+    </div>
+        
+	<script type="text/ng-template" src="<%=request.getContextPath()%>/resources/js/jquery-ui.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/team.js"></script>
